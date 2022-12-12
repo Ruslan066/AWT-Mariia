@@ -539,6 +539,7 @@ function getComments(id, comOffsets) {
     //const url = "https://wt.kpi.fei.tuke.sk/api/article/17188/comment";
     function reqListenerComments() {
         // stiahnuty text
+        console.log("new");
         console.log(this.responseText)
         if (this.status === 200) {
             responseJSONComment = JSON.parse(this.responseText)
@@ -611,25 +612,57 @@ function fetchAndProcessArticle(targetElm, artIdFromHash, offsetFromHash, totalC
                 data.current = parseInt(comPage);
                 data.comOffsets = parseInt(comOffsets);
                 //------------
-                if (comPage > 1) {
-                    data.prevPage = parseInt(comPage) - 1;
-                }
-                if (comPage < totalCount) {
-                    data.nextPage = parseInt(comPage) + 1;
-                }
-                if (comPage === oldpageComments) {
-                    data.comOffsets = 0;
-                }
-                if (comPage > oldpageComments) {
-                    data.comOffsets += 10;
-                }
-                if (comPage < oldpageComments) {
-                    data.comOffsets -= 10;
-                }
-                oldpageComments = comPage;
-
+                //------------ если доб 21 комент или 31 41 51
+                var Tfcom = totalCount;
+                if (totalCountCom % 10 === 0)
+                    Tfcom += 1;
+                var Tocom = (totalCount - 1) * 10;
+                if (totalCount === 0)
+                    Tocom = 0;
                 //------------
-                getComments(artIdFromHash, data.comOffsets);
+                console.log("comOffsets: "+ comOffsets);
+                console.log("Tocom: "+ Tocom);
+
+                console.log("comPage: "+ comPage);
+                console.log("totalCount: "+ totalCount);
+                console.log("oldpageComments: "+ oldpageComments);
+                if(comPage.toString() === totalCount.toString() && comOffsets.toString()===Tocom.toString()) {
+                    console.log("rrrrrrrrrrrrrr");
+                    if (comPage > 1) {
+                        data.prevPage = parseInt(comPage) - 1;
+                    }
+                    if (comPage < totalCount) {
+                        data.nextPage = parseInt(comPage) + 1;
+                    }
+                    getComments(artIdFromHash, Tocom);
+                    oldpageComments = totalCount;
+                }
+                else {
+                    console.log("reeeeeeeeeee");
+                    if (comPage > 1) {
+                        data.prevPage = parseInt(comPage) - 1;
+                    }
+                    if (comPage < totalCount) {
+                        data.nextPage = parseInt(comPage) + 1;
+                    }
+                    if (comPage === oldpageComments) {
+                        data.comOffsets = 0;
+                    }
+
+                    if (comPage > oldpageComments) {
+                        data.comOffsets += 10;
+                    }
+                    if (comPage < oldpageComments) {
+                        data.comOffsets -= 10;
+                    }
+
+                    console.log(comPage + " " + totalCount);
+                    oldpageComments = comPage;
+                    getComments(artIdFromHash, data.comOffsets);
+                }
+
+
+
 
                 data.responseJSON1 = responseJSON;
                 data.responseJSON2 = responseJSONComment;
@@ -645,7 +678,7 @@ function fetchAndProcessArticle(targetElm, artIdFromHash, offsetFromHash, totalC
                 data.deleteLink =
                     `#artDelete/${responseJSON.id}/${currPage}/${offsets}`;
                 data.commentAdd =
-                    `#commentPost/${responseJSON.id}/${offsetFromHash}/${totalCountFromHash}/${currPage}/${offsets}/${responseJSON.id}/${data.current}/${data.comOffsets}`;
+                    `#commentPost/${responseJSON.id}/${offsetFromHash}/${totalCountFromHash}/${currPage}/${offsets}/${responseJSON.id}/${Tfcom}/${Tocom}`;
                     //`#commentPost/${responseJSON.id}/${currPage}/${offsets}`;
                     //`#commentPost/${data}`;
 
