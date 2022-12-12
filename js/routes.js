@@ -202,6 +202,7 @@ function cenaTemplate(targetElm) {
 
 //переменная которая хранит в себе максимальное количество статей
 var totalCountArt = 0;
+var totalCountCom = 0;
 
 //функция, которая покажет максимальное количество страничек
 function totalCountf() {
@@ -222,6 +223,26 @@ function totalCountf() {
     //async - false  важно!!!
     ajax1.open("GET", urlbase, false);
     ajax1.send();
+}
+
+function totalCountComments(articleId) {
+    var urlbase = `https://wt.kpi.fei.tuke.sk/api/article/${articleId}/comment`;
+    function reqListener1() {
+        console.log(this.responseText)
+        if (this.status === 200) {
+            const responseJSON = JSON.parse(this.responseText)
+            totalCountCom = parseInt(responseJSON.meta.totalCount);
+        } else {
+            alert("error");
+        }
+    }
+
+    var ajax1 = new XMLHttpRequest();
+    ajax1.addEventListener("load", reqListener1);
+    //async - false  важно!!!
+    ajax1.open("GET", urlbase, false);
+    ajax1.send();
+
 }
 
 //переменная запоминает на какой были страничке от 1 до (последней) для статей
@@ -575,7 +596,10 @@ function fetchAndProcessArticle(targetElm, artIdFromHash, offsetFromHash, totalC
                 }
                 window.artFrmHandler.assignFormAndArticle("articleForm", "hiddenElm", artIdFromHash, offsetFromHash, totalCountFromHash, currPage, offsets, articleId);
             } else {
-
+                totalCountComments(artIdFromHash);
+                var totalCount = totalCountCom / 10;
+                //Math.ceil() округляем до целого числа. А + 1 даем на одну стр больше
+                totalCount = Math.ceil(totalCount);
                 //------------
                 data.artIdFromHash = artIdFromHash;
                 data.offsetFromHash = offsetFromHash;
@@ -590,7 +614,7 @@ function fetchAndProcessArticle(targetElm, artIdFromHash, offsetFromHash, totalC
                 if (comPage > 1) {
                     data.prevPage = parseInt(comPage) - 1;
                 }
-                if (comPage < 99) {
+                if (comPage < totalCount) {
                     data.nextPage = parseInt(comPage) + 1;
                 }
                 if (comPage === oldpageComments) {
