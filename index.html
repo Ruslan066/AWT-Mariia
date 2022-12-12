@@ -1,0 +1,765 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="Sukhachova Mariia" name="author">
+    <link href="/awt/fig/home.png" rel="shortcut icon" type="image/png">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/styleAddOpinion.css" rel="stylesheet">
+    <link href="css/styleArticleEdit.css" rel="stylesheet">
+    <title>Blog o bývaní v Bratislave</title>
+
+    <meta name="google-signin-client_id"
+          content="http://212489423994-u5pqse4dhbod11f16u7ntlui8i64q2hu.apps.googleusercontent.com"/>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://apis.google.com/_/scs/abc-static/_/js/k=gapi.lb.ru.jp958WhMr5A.O/m=signin2/rt=j/sv=1/d=1/ed=1/rs=AHpOoo9q4p0UPb8scjvctQwOHriJlFwb5g/cb=gapi.loaded_0?le=scs"
+            async=""></script>
+
+
+</head>
+
+<body>
+<!--div на всю страницу-->
+<div class="wrapper">
+    <!--div верхней части до footer'a-->
+    <div class="content">
+        <!--header верхнего меню-->
+        <header class="nazva lock menu">
+            <!--не нужная кнопка, но без нее не работает :( -->
+            <button id="menuTitle" style="display: none">Menu</button>
+            <!--div с табличкой-->
+            <div class="mask">
+                <!--список ссылок на разделы сайта
+                сделал в виде таблички-->
+                <table>
+                    <thead>
+                    <tr style="cursor: pointer">
+                        <!--onclick=window.location.href="#welcome" - нужен для клика по ячейке-->
+                        <th onclick='window.location.href="#welcome"'><img src="awt/header/welcome.png"></th>
+                        <th onclick='window.location.href="#okresy"'><img src="awt/header/okresy.png"></th>
+                        <th onclick='window.location.href="#cena"'><img src="awt/header/cena.png"></th>
+                        <th onclick='window.location.href="#zvierata"'><img src="awt/header/paws.png"></th>
+                        <th onclick='window.location.href="#opinions"'><img src="awt/header/feedback.png"></th>
+                        <th onclick='window.location.href="#addOpinion"'><img src="awt/header/list.png"></th>
+                        <th onclick='window.location.href="#addarticles"'><img src="awt/header/copy-writing.png"></th>
+                        <th onclick='window.location.href="#articles/1/0"'><img src="awt/header/application.png">
+                        <th onclick='window.location.href="#SignIn"'><img src="awt/header/application.png">
+                        </th>
+                        <!--ссылка на первую страничку со статьями.
+                        articles/1/0
+                        articles - название ссылки какую страничку открыть
+                        /1/  -  какую страничку открыть
+                        /0/  -  с какой статьи, отображать статьи. Логично что на 1 странице нужно отображать с 0 статьи -->
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </header>
+        <!--заголовок который будет видно на каждой страничке сайта-->
+        <h1 style="text-align: center;">Blog o bývaní v Bratislave</h1>
+
+        <!--идентификатор html-файла -->
+        <main id="router-view"></main>
+
+        <!-- Welcome page -->
+        <!--script - эта часть кода будет выполняться при нажатии на ссылку #welcome
+        id="template-welcome" его id который мы указываем в файле route.js в поле getTemplate (13 строка)
+        тем самым мы даем ему понять какой именно script нам нужно запустить и отобразить с файла index.html-->
+        <script id="template-welcome" type="text/template">
+            <!--главный div в котором нходится всё что должно отображатся именно на "Welcome page" страничке -->
+            <div class="mainContainier">
+                <!--заголовок названия странички-->
+                <h2 class="h2files">Welcome!</h2>
+                <!--фото текущей странички-->
+                <figure class="foto1">
+                    <img src="/awt/fig/welcomeFoto.jpg" alt="Bratislava">
+                </figure>
+                <!--текст на страничке-->
+                <p>Ahoj, volám sa Mária a rozhodla som sa založiť svoj vlastný mini-blog, aby som vám
+                    porozprávala o všetkých zákutiach života v Bratislave. Pracujem v realitnej kancelárii a o
+                    nehnuteľnostiach
+                    viem všetko. Všetky články som napísal ja a môj šéf, ktorý túto firmu vytvoril od nuly.
+                    Prajem vám príjemné čítanie a dúfam, že tu nájdete odpovede na všetky svoje otázky. Úplne
+                    dole nechávam svoje kontakty.
+                </p>
+                <nav>
+                    <p>Kontaktovať: <a class="llinkbio" href="https://www.instagram.com/marry.tell/">Sukhachova
+                        Mariia</a>, mariia.sukhachova@student.tuke.sk</p>
+                </nav>
+            </div>
+        </script>
+
+
+        <script src="js/SignInJs.js"></script>
+
+        <script id="template-SignIn" type="text/template">
+            <!--главный div в котором нходится всё что должно отображатся именно на "Welcome page" страничке -->
+            <div class="mainContainier">
+                <!--заголовок названия странички-->
+                <h2 class="h2files">SignIn!</h2>
+
+                <!--текст на страничке-->
+                <div class="g-signin2" data-onsuccess="onSignIn">
+                    <p>jsjsjsjs</p>
+                </div>
+
+                <a href="#" onclick="onSignIn();">Sign in</a>
+                <a href="#" onclick="signOut();">Sign out</a>
+            </div>
+        </script>
+
+
+        <!-- Okresy Bratislavy page -->
+        <script id="template-okresy" type="text/template">
+            <!--главный div в котором нходится всё что должно отображатся именно на страничке "Okresy Bratislavy" -->
+            <div class="mainContainier">
+                <!--заголовок названия странички-->
+                <h2 class="h2files">Okresy Bratislavy!</h2>
+                <!--фото текущей странички-->
+                <figure class="foto1">
+                    <img src="/awt/fig/okresyFoto.jpeg" alt="Bratislava">
+                </figure>
+                <!-- { { # okresy } } начало блока с текстом-->
+                {{#okresy}}
+                <!--у нас div'ов будет столько - сколько будет записей-->
+                <div>
+                    <!--заголовок {{title}} - берет данные из файлика (dataOkresy), там где написанно "title":-->
+                    <h3>{{title}}</h3>
+                    <!--текст {{descriptions}} - берет данные из файлика (dataOkresy), там где написанно "descriptions":-->
+                    <p>{{descriptions}}</p>
+                </div>
+                <!--{ { / okresy } } конец блока с текстом-->
+                {{/okresy}}
+                <!--заголовок таблички-->
+                <h3 class="h2files">Mestské časti Bratislavy</h3>
+                <!--div со всей табличкой-->
+                <div class="table-wrapper">
+                    <table class="fl-table">
+                        <!--thead - верхняя часть таблички она не изменяется-->
+                        <thead>
+                        <tr>
+                            <th>Okres</th>
+                            <th>Obyvateľstvo</th>
+                            <th>Rozloha (km2)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- { { # casti } } начало блока со строками таблички-->
+                        {{#casti}}
+                        <!--у нас tr (строк) будет столько - сколько будет записей, в нашем случае этот код повторится 5 раз-->
+                        <tr class="linetr">
+                            <!--{{okres}} - берет данные из файлика (dataOkresy), там где написанно "okres":-->
+                            <th>{{okres}}</th>
+                            <!--{{obyvatelstvo}} - берет данные из файлика (dataOkresy), там где написанно "obyvatelstvo":-->
+                            <th>{{obyvatelstvo}}</th>
+                            <!--{{rozloha}} - берет данные из файлика (dataOkresy), там где написанно "rozloha":-->
+                            <th>{{rozloha}}</th>
+                        </tr>
+                        <!-- { { / casti } } конец блока со строками таблички-->
+                        {{/casti}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </script>
+
+        <!-- Сena bývania v Bratislave page -->
+        <script id="template-cena" type="text/template">
+            <!--главный div в котором нходится всё что должно отображатся именно на страничке "Сena bývania v Bratislave" -->
+            <div class="mainContainier">
+                <!--заголовок названия странички-->
+                <h2 class="h2files">Od čoho závisí cena bývania v Bratislave?</h2>
+                <!--фото текущей странички-->
+                <figure class="foto1">
+                    <img src="/awt/fig/byty.jpg" alt="Bratislava">
+                </figure>
+                <!--на страничке отображается список, данные берем из файла (dataCena.json)-->
+                <ul class="ulli">
+                    <!-- { { # cena } } начало блока со списком-->
+                    {{#cena}}
+                    <!--{{title}} - берет данные из файлика (dataCena), там где написанно "title":-->
+                    <li>{{title}}</li>
+                    <!-- { { / cena } } конец блока со списком-->
+                    {{/cena}}
+                </ul>
+                <!--текст на странице {{text}} - берет данные из файлика (dataCena), там где написанно "text":-->
+                <p>{{text}}</p>
+            </div>
+        </script>
+
+        <!-- Domáce zvieratá page -->
+        <script id="template-zvierata" type="text/template">
+            <!--заголовок названия странички. Мы его вынесли за главный div
+            потому что он(div class="mainContainier dz") содержит в себе два div'a
+            для отображения текста влевой части, а картинки вправой-->
+            <h2 class="h2files">Domáce zvieratá</h2>
+            <!-- div в котором нходится левая и правая часть, с текстом и картинкой -->
+            <div class="mainContainier dz">
+                <!--div с текстом занимает width: 40%; левой части экрана-->
+                <div class="leftdz">
+                    <p>Najväčším problémom, ktorý môže vzniknúť pri prenájme ubytovania na Slovensku, je prítomnosť
+                        domácich
+                        zvierat.<br>
+                        Nájsť byt, v ktorom môžete mať psa alebo mačku, je v každom meste, a dokonca aj v Bratislave,
+                        hotový
+                        oriešok.<br>
+                        Nájdenie ubytovania s chlpatým priateľom môže, žiaľ, trvať od 2 týždňov do 3 mesiacov.
+                        Aj v zmluve prenajímateľ určite uvedie, že v prípade poškodenia nehnuteľnosti -
+                        budete musieť zaplatiť alebo záloha sa nevráti.</p>
+                </div>
+                <!--div с картинкой занимает width: 60%; части экрана-->
+                <div class="rightdz">
+                    <figure class="fotoDog">
+                        <img src="/awt/fig/dog.gif" alt="Bratislava">
+                    </figure>
+                </div>
+            </div>
+        </script>
+
+        <!-- Visitor Opinions page -->
+        <!--страничка с ответами пользователей, они хранятся в "localStorage"
+        используя файл "addOpinion.js" Все денные отображаются в табличке-->
+        <script id="template-opinions" type="text/template">
+            <!--главный div в котором нходится всё что должно отображатся именно на страничке "Visitor Opinions" -->
+            <div class="mainContainier">
+                <!--заголовок названия странички-->
+                <h2 class="h2files">Visitor Opinions</h2>
+                <!--div в котором нходится табличка с ответами пользователя-->
+                <div class="table-wrapper">
+                    <!--табличка с ответами пользователя-->
+                    <table class="fl-table opi-table">
+                        <!--thead - верхняя часть таблички(ее заголовок)-->
+                        <thead>
+                        <tr>
+                            <!--этому столбику (th) применен класс "THfotoOpinions"
+                            который в css имеет ширину 100px это нужно для того
+                            чтобы столбик был такой ширины под фотки.-->
+                            <th class="THfotoOpinions">Foto</th>
+                            <th>Name</th>
+                            <th>Comment</th>
+                            <th>Email</th>
+                            <th>článok čo bol najzaujímavejší</th>
+                            <th>Kde by chceli bývať</th>
+                        </tr>
+                        </thead>
+                        <!--tbody - тело таблички со всеми рядками ответов-->
+                        <tbody>
+                        <!--эта строка будет отображатся всегда, чтобы табличка не была пустой
+                        если пользователи ещё не добавили свои ответы.-->
+                        <tr class="linetr">
+                            <th class="THfotoOpinions">
+                                <figure class="FfotoOpinions">
+                                    <img class="fotoOpinions"
+                                         src="https://prod-images.tcm.com/Master-Profile-Images/LeonardoDiCaprio.jpg"></img>
+                                </figure>
+                            </th>
+
+                            <th>Leonardo</th>
+                            <th>cool site</th>
+                            <th>Leonardo@gmail.com</th>
+                            <th>Okresy Bratislavy</th>
+                            <th>V byte, V dome</th>
+                        </tr> <!--конец тестовой строки-->
+
+                        <!--начало блока со строками ответов, количество ответов - количество строк-->
+                        {{#.}}
+                        <section>
+                            <tr class="linetr">
+                                <!--в css файле классы (THfotoOpinions, FfotoOpinions, fotoOpinions)
+                                настроенны так, что размер фото будет всегда 100х100px-->
+                                <th class="THfotoOpinions">
+                                    <figure class="FfotoOpinions">
+                                        <img class="fotoOpinions" src="{{url}}"></img>
+                                    </figure>
+                                </th>
+                                <!--name, comment, email, contactChoice1, contactChoice2
+                                название переменных в файле "addOpinion.js"-->
+                                <th>{{name}}</th>
+                                <th>{{comment}}</th>
+                                <th>{{email}}</th>
+                                <th>{{contactChoice1}}</th>
+                                <th>{{contactChoice2}}</th>
+                            </tr>
+                        </section>
+                        <!--конец блока со строками ответов-->
+                        {{/.}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </script>
+
+        <!-- Add Opinion page -->
+        <script id="template-addOpinion" type="text/template">
+            <!--страничка с добавлением ответов, на ней есть два заголовока и форма
+            для её оформления создан отдельный css файл styleAddOpinion.css-->
+            <h2 class="h2files">Your Opinion</h2>
+            <h3 class="h2files">Napíšte svoj názor, ak Vám môj blog pomohol alebo vás inšpiroval ;)</h3>
+            <form id="opnFrm" class="opnFrm">
+                <!--Всё находится в форме. Все div'ы-->
+                <div class="mainContainier formContanier">
+                    <!--для каждого (текста и поля ввода) есть свой div с классом part1-part8-->
+                    <!--1 div блок "Vaše meno"
+                    ввод обычный текст-->
+                    <div class="part1">
+                        <!--надпись-->
+                        <label for="meno">Vaše meno:</label>
+                        <!--поле ввода-->
+                        <input type="text" name="meno" id="meno" class="inputo" size="20" maxlength="50"
+                               placeholder="Mariia" required/>
+                    </div>
+                    <!--2 div блок "Váš mail"
+                    ввод текст типа email-->
+                    <div class="part2">
+                        <!--надпись-->
+                        <label for="email">Váš mail:</label>
+                        <!--поле ввода-->
+                        <input type="text" name="email" id="email" class="inputo" size="20" maxlength="50"
+                               placeholder="mail@gmail.com" required/>
+                    </div>
+                    <!--3 div блок "Foto"
+                    ввод ссылка на фото с интернета
+                    если не указать ссылку, то будет отображатся фото /awt/fig/no-image-available.jpg-->
+                    <div class="part3">
+                        <!--надпись-->
+                        <label for="url">Foto:</label>
+                        <!--поле ввода-->
+                        <input class="inputo" id="url" name="url" type="url" placeholder="https://foto.jpg"/>
+                    </div>
+                    <!--4 div блок "Your opinion"
+                    ввод textarea-->
+                    <div class="part4">
+                        <!--надпись-->
+                        <label for="nazor">Your opinion:</label>
+                        <!--поле ввода-->
+                        <textarea class="inputtext" name="nazor" id="nazor" cols="63" rows="4"
+                                  placeholder="Express your opinion here"
+                                  required></textarea>
+                    </div>
+                    <!--5 div блок "Ktorý článok čo bol najzaujímavejší"
+                    кружочки были изменены на более красивый вид в css файлике-->
+                    <div class="part5">
+                        <!--надпись-->
+                        <p>Ktorý článok bol najzaujímavejší?</p>
+                        <!--блок div с одним выбором тип (radio)-->
+                        <div class='radio-container'>
+                            <input checked='' id='contactChoice1' name='contact' type='radio' value='choice1'>
+                            <label for='contactChoice1'>Okresy Bratislavy</label>
+
+                            <input id='contactChoice2' name='contact' type='radio' value='choice2'>
+                            <label for='contactChoice2'>Сena bývania</label>
+
+                            <input id='contactChoice3' name='contact' type='radio' value='choice3'>
+                            <label for='contactChoice3'>Domáce zvieratá</label>
+                        </div>
+                    </div>
+                    <!--6 div блок "Kde by ste chceli bývať"
+                    чек-боксики были изменены на более красивый вид в css файлике-->
+                    <div class="part6">
+                        <!--надпись-->
+                        <p>Kde by ste chceli bývať?</p>
+                        <!--блок div с одним выбором тип (checkbox)-->
+                        <div class='radio-container'>
+                            <input type="checkbox" id="choice1" name="interest" value="choice1"/>
+                            <label for="choice1">V byte</label>
+
+                            <input type="checkbox" id="choice2" name="interest" value="choice2"/>
+                            <label for="choice2">V dome</label>
+
+                            <input type="checkbox" id="choice3" name="interest" value="choice3"/>
+                            <label for="choice3">Páči sa mi oboje</label>
+                        </div>
+                    </div>
+                    <!--7 div блок с выпадающим списком-->
+                    <div class="part7">
+                        <!--надпись-->
+                        <label for="wstranka">Vyberte si strankú, ktorá vám najviac vyhovuje:</label>
+                        <input class="inputo" list="stranka" id="wstranka" name="wstranka"
+                               placeholder="Vyberte"/>
+                        <datalist id="stranka">
+                            <option value="Bazos.sk"></option>
+                            <option value="Nehnutelnosti.sk"></option>
+                            <option value="Byty.sk"></option>
+                            <option value="Novostavby.sk"></option>
+                            <option value="Topreality.sk"></option>
+                            <option value="Realitysme.sk"></option>
+                        </datalist>
+                    </div>
+                    <!--8 div блок с двумя кнопками-->
+                    <div class="part8">
+                        <button type="submit">Send</button>
+                        <button type="reset">Reset</button>
+                    </div>
+                </div>
+            </form>
+        </script>
+
+        <!--JavaScript code, inserted as a module-->
+        <script src="js/index.js" type="module"></script>
+        <script src="js/articleFormsHandler.js"></script>
+
+        <!-- Articles page -->
+        <script id="template-articles" type="text/template">
+            <!--заголовок названия странички-->
+            <h2 class="h2files">Articles</h2>
+            <!--главный div в котором нходится всё что должно отображатся именно на страничке "Articles" -->
+            <div class="mainContainier">
+                <!--на этой страничке два основных div'a
+                первый для перехода между страницами div class="pages"-->
+                <div class="pages">
+                    <!--переход на первую и последнюю страничку находится в заголовке <h3>
+                    также тут отображается текущая страничка и их количество.-->
+                    <h3>
+                        <!--ссылка на первую страничку со статьями.
+                        articles/1/0/0
+                        articles - название ссылки какую страничку открыть
+                        /1/  -  какую страничку открыть
+                        /0/  -  с какой статьи, отображать статьи. Логично что на 1 странице нужно отображать с 0 статьи
+                        /0/  -  ключевое число для установки в переменную oldpage на какой станице были
+                        (если 0 - то были на первой) это нужно для корректной работы перехода между страничками-->
+                        <a href="#articles/1/0/0">Start page</a>
+
+                        <!--отображает текущую страничку, количество страничек и какие статьи отображаются-->
+                        Displaying page {{currPage}} of {{pageCount}} pages articles: {{offsets}} - {{offsets20}}
+
+                        <!--ссылка на последнюю страничку со статьями.
+                        articles/{{totalCountEnd}}/1280/1
+                        articles - название ссылки какую страничку открыть
+                        /{{totalCountEnd}}/  -  какую страничку открыть
+                        /9999/  -  с какой статьи, отображать статьи. На последней странице нужно отображать с 9999 статьи, их меньше, а нас просят на последней ничего не отображать.
+                        /1/  -  ключевое число для установки в переменную oldpage на какой станице были
+                        (если 1 - то были на последней) это нужно для корректной работы перехода между страничками-->
+                        <a href="#articles/{{totalCountEnd}}/9999/1">End page</a>
+                    </h3>
+                    <div class="blockButton">
+                        <div class="button-page-container">
+
+                            <!--блок с кнопкой перехода на предыдущую страничку.-->
+                            {{#prevPage}}
+                            <!--мы эти значения / {{prevPage}} /  {{offsets}}
+                            передаем в функцию "fetchAndDisplayArticles" в файле route.json-->
+                            <a href="#articles/{{prevPage}}/{{offsets}}"><< Previous page</a>
+                            {{/prevPage}}
+
+                            <!--блок с кнопкой перехода на следующую страничку.-->
+                            {{#nextPage}}
+                            <a href="#articles/{{nextPage}}/{{offsets}}">Next page >></a>
+                            {{/nextPage}}
+                        </div>
+                        <div class="findTagText">
+                            <input type="text" id="tagtext1" placeholder="{{tagtext}}">
+                            <a href="#articles/1/0/0/{{tagtext}}">find</a>
+                            <a href="#show">show filter</a>
+                            <a href="#hide">hide filter</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!--второй div содержит тибличку со статьями div class="table-wrapper"-->
+                <div class="table-wrapper">
+
+
+                    <table class="fl-table flterTable opi-table" id="tableF">
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Author</th>
+                            <th>Title</th>
+                            <th>Date Created</th>
+                            <th>Tag</th>
+                            <th>Count comments</th>
+                            <th>Search</th>
+                        </tr>
+                        </thead>
+                        <thead>
+                        <tr class="filterTr">
+                            <th>
+                                <input type="number" id="findId">
+                            </th>
+                            <th>
+                                <input type="text" id="findAuthor" value="{{findAuthor}}">
+                            </th>
+                            <th>
+                                <input type="text" id="findTitle">
+                            </th>
+                            <th>
+                                <input type="text" id="findDateCreated">
+                            </th>
+                            <th>
+                                <input type="text" id="tagtext" value="{{tagtext}}">
+                            </th>
+                            <th>
+                                <input type="number" id="findCountComments">
+                            </th>
+                            <th>
+                                <a href="#articles/1/0/0/{{tagtext}}/{{findAuthor}}">find</a>
+                            </th>
+                        </tr>
+                        </thead>
+                    </table>
+
+
+                    <!--тибличка со статьями-->
+                    <table class="fl-table opi-table">
+                        <thead>
+                        <tr>
+                            <th class="idd">id</th>
+                            <th class="THfotoOpinions">Image</th>
+                            <th>Author</th>
+                            <th>Title</th>
+                            <th>Date Created</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!--начало блока со строками статей, количество статей - 20 на страничке-->
+                        <!--#textarticles - берем данные
+                        из файла route.js
+                        из функции fetchAndDisplayArticles()
+                        из переменной data4rendering
+                        и из переменой textarticles: которая хранит всебе - "JSON.parse(this.responseText)"-->
+                        {{#textarticles}}
+
+                        <!--#articles - берем данные
+                        из JSON.parse(responseText)-->
+                        {{#articles}}
+                        <section>
+                            <!--продолжение таблички-->
+
+                            <!--
+                            -- 6 задание
+                            onclick="window.location.href='{{detailLink}}'"  style="cursor: pointer"
+                            --
+                            -->
+                            <tr class="linetr" onclick="window.location.href='{{detailLink}}'" style="cursor: pointer">
+                                <th class="idd">{{id}}</th>
+                                <!--в css файле классы (THfotoOpinions, FfotoOpinions, fotoOpinions)
+                                настроенны так, что размер фото будет всегда 100х100px-->
+                                <th class="THfotoOpinions">
+                                    <figure>
+                                        <img class="fotoOpinions" src="{{imageLink}}"
+                                             onerror="this.src='/awt/fig/no-image-available.jpg'"></img>
+                                    </figure>
+                                </th>
+                                <th>{{author}}</th>
+                                <th>{{title}}</th>
+                                <th>{{dateCreated}}</th>
+                            </tr>
+                        </section>
+                        <!--конец блока со строками статей-->
+                        {{/articles}}
+                        {{/textarticles}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </script>
+
+        <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+
+
+        <!-- Страничка ошибки -->
+        <script id="template-error" type="text/template">
+            <div class="mainContainier">
+                <!--заголовок названия странички-->
+                <h2 class="h2files">Eror!</h2>
+                <!--фото текущей странички-->
+                <figure class="foto1 fotoError">
+                    <img src="/awt/fig/eror.jpg" alt="Bratislava">
+                </figure>
+                <!--текст на страничке-->
+                <p>
+                    sorry :(
+                </p>
+            </div>
+        </script>
+
+        <!------------->
+        <!--6 задание-->
+        <!------------->
+
+        <script id="template-article" type="text/template">
+            <!--заголовок названия странички-->
+            {{#responseJSON1}}
+            <h2 class="h2files">Article: {{title}}</h2>
+            {{/responseJSON1}}
+            <!--главный div в котором нходится всё что должно отображатся именно на страничке "Articles" -->
+            <div class="mainContainier Containier2">
+                <div class="leftContainier">
+                    {{#responseJSON1}}
+                    <article>
+                        <p>
+                        <h3 class="hh33">Author:</h3> {{author}}
+                        </p>
+                        <p>
+                        <h3 class="hh33">Text:</h3> {{{content}}}
+                        </p>
+                        <p>
+                        <h3 class="hh33">Keywords:</h3>
+                        {{tags}}
+                        </p>
+                    </article>
+                    {{/responseJSON1}}
+                    <div class="footerButtonEditPage">
+                        <a href="{{backLink}}" class="linkAsButton" id="idBackLink">Back</a>
+                        <a href="{{editLink}}" class="linkAsButton">Edit</a>
+                        <a href="{{deleteLink}}" class="linkAsButton">Delete</a>
+                    </div>
+
+                    <div class="comments">
+                        {{#responseJSON2}}
+                        <div class="button-com-page-container">
+
+                            {{#meta}}
+                            <h2>{{totalCount}} Comments</h2>
+                            {{/meta}}
+                            <!--блок с кнопкой перехода на предыдущую страничку.-->
+                            {{#prevPage}}
+                            <a href="#article/{{artIdFromHash}}/{{offsetFromHash}}/{{totalCountFromHash}}/{{currPage}}/{{offsets}}/{{articleId}}/{{prevPage}}/{{comOffsets}}">
+                                <img src="awt/fig/left-arrow.png"> </a>
+                            {{/prevPage}}
+
+                            <!--блок с кнопкой перехода на следующую страничку.-->
+                            {{#nextPage}}
+                            <a href="#article/{{artIdFromHash}}/{{offsetFromHash}}/{{totalCountFromHash}}/{{currPage}}/{{offsets}}/{{articleId}}/{{nextPage}}/{{comOffsets}}"><img
+                                    src="awt/fig/right-arrow.png"> </a>
+                            {{/nextPage}}
+                        </div>
+
+
+                        {{#comments}}
+                        <div class="comment">
+                            <img src="awt/fig/user.png" class="userPhoto">
+                            <div class="commentText">
+                                <h3>{{author}}</h3>
+                                <h5>{{dateCreated}}</h5>
+                                <p>{{text}}</p>
+                            </div>
+                        </div>
+                        {{/comments}}
+                        {{/responseJSON2}}
+                    </div>
+
+
+                    <form id="commentsForm" class="commentsForm">
+                        <div class="addComment">
+                            <img src="awt/fig/user.png" class="userPhotoAdd">
+                            <div class="Part0">
+                                <div class="Part1">
+                                    <label for="author">Author:</label>
+                                    <input type="text" name="commentauthor" id="commentauthor" class="commentIputo"/>
+
+                                </div>
+                                <div class="Part2">
+                                    <label for="author">Comment:</label>
+                                    <textarea
+                                            name="commentcontent" id="commentcontent"
+                                            cols="50" rows="20" required
+                                            class="commentIputoT">
+
+                                </textarea>
+                                </div>
+                                <a href="{{commentAdd}}" class="linkAsButton">Add</a>
+                            </div>
+                        </div>
+                    </form>
+
+
+                </div>
+                <div class="rightContainier">
+                    {{#responseJSON1}}
+                    <figure class="fotoArticle">
+                        <img src="{{imageLink}}" alt="article figure"
+                             onerror="this.src='/awt/fig/no-image-available.jpg'"/>
+                    </figure>
+                    {{/responseJSON1}}
+                </div>
+
+            </div>
+        </script>
+
+        <script id="template-article-form" type="text/template">
+            <!--заголовок названия странички-->
+            <h2 class="h2files">{{formTitle}}</h2>
+            <!--главный div в котором нходится всё что должно отображатся именно на страничке "Articles" -->
+
+            <form id="articleForm" class="artEditForm">
+                <div class="mainContainier artEditFormContanier">
+
+                    <div class="artEditPart1">
+                        <label for="author">Author:</label>
+                        <input type="text" name="author" id="author" value="{{author}}" size="50"
+                               title="Article author, max. length 100 characters."
+                               maxlength="100" placeholder="e.g. Ján Trieska" class="artEditInputo i1"/>
+                    </div>
+
+                    <div class="artEditPart1">
+                        <label for="title">Title:</label>
+                        <input type="text" name="title" id="title" value="{{title}}" size="50"
+                               maxlength="100" pattern="\S[\S\s]*" placeholder="e.g. My story." required
+                               title="Article title, mandatory item, max. length: 100 characters.
+                                   The first character must not be a space." class="artEditInputo i2"/>
+                    </div>
+
+                    <div class="artEditPart1">
+                        <label for="imageLink">Image (url):</label>
+                        <input type="url" name="imageLink" id="imageLink" value="{{imageLink}}" size="50"
+                               title="Image URL, max. length 100 characters." maxlength="100" class="artEditInputo i3"/>
+
+                        <!--                        <button type="button" id="btShowFileUpload" class="artEditButton bb">-->
+                        <!--                            Upload image-->
+                        <!--                        </button>-->
+                    </div>
+                    <p>Image Upload from pc:</p>
+                    <div>
+                        <fieldset class="artEditPart2" id="fsetFileUpload">
+
+                            <label class="input-file">
+                                <input class="artEditButton" type="file" id="flElm" name="file"
+                                       accept="image/jpeg, image/png">
+                                <span class="input-file-btn">Выберите файл</span>
+                            </label>
+                            <!--<input type="file" id="flElm" name="file" accept="image/jpeg, image/png" class="artEditButton" placeholder="Load"/>-->
+
+                            <button type="button" id="btFileUpload" class="artEditButton bbb">
+                                Send image to server
+                            </button>
+                            <button type="button" id="btCancelFileUpload" class="artEditButton bbb">
+                                Cancel uploading
+                            </button>
+                        </fieldset>
+                    </div>
+                    <p>Article content:</p>
+                    <div class="artEditPart2">
+
+                    <textarea
+                            name="content" id="content" spellcheck="true" lang="sk"
+                            cols="50" rows="20" required
+                            placeholder="Article content, mandatory item, can be plain text or in HTML."
+                            class="inputtext">
+                            {{content}}
+                    </textarea>
+                    </div>
+
+                    <div class="artEditPart1">
+                        <label for="tags">Keywords:</label>
+                        <input type="text" name="tags" id="tags" value="{{tags}}" size="50"
+                               title="Keyword list, comma separated." placeholder="e.g. village, drama"
+                               class="artEditInputo"/>
+                    </div>
+
+                    <div>
+                        <button onclick='window.location.href="{{backLink}}"' class="artEditButton"> Back</button>
+                        <button type="reset" class="artEditButton"> Reset Form</button>
+                        <button type="submit" class="artEditButton"> {{submitBtTitle}}</button>
+                    </div>
+                </div>
+            </form>
+        </script>
+    </div>
+</div>
+<!--footer с текстом самый низ файла отображается на каждой страничке-->
+<footer class="footer footerP">
+    <p>Dátum napísania: 22.10.2022</p>
+</footer>
+</body>
+</html>

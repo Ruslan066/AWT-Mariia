@@ -1,0 +1,109 @@
+{
+  "articles": [
+    {
+      "id": 17166,
+      "author": "AngryGreta78",
+      "dateCreated": "2021-05-09T22:11:52Z",
+      "imageLink": "https://assets.teenvogue.com/photos/5d3875dcc6732300082916c8/16:9/w_2560%2Cc_limit/00-story.jpg",
+      "lastUpdated": "2022-11-20T11:33:34Z",
+      "title": "Climate Activists",
+      "tags": [
+        "ConEvent"
+      ]
+    },
+    {
+      "id": 17184,
+      "author": "terez.biak",
+      "dateCreated": "2021-05-10T06:59:46Z",
+      "imageLink": "https://cdn.pixabay.com/photo/2017/01/31/15/33/linux-2025130_960_720.png",
+      "lastUpdated": "2022-11-20T11:15:25Z",
+      "title": "NEMAZAŤ",
+      "tags": [
+        "tux"
+      ]
+    },
+    {
+      "id": 17188,
+      "author": "Peter MAcek",
+      "dateCreated": "2021-05-10T07:06:24Z",
+      "imageLink": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg",
+      "lastUpdated": "2021-05-10T07:06:24Z",
+      "title": "Moja story",
+      "tags": [
+        "#juchu #buchu"
+      ]
+    },
+    {
+      "id": 17190,
+      "author": "Janko Panko",
+      "dateCreated": "2021-05-10T07:29:42Z",
+      "imageLink": null,
+      "lastUpdated": "2022-11-21T13:55:15Z",
+      "title": "test",
+      "tags": [
+        "spongebob"
+      ]
+    },
+    {
+      "id": 17191,
+      "author": "Pilot Ivan",
+      "dateCreated": "2021-05-10T07:30:49Z",
+      "imageLink": "http://wt.kpi.fei.tuke.sk/uploads/RmDnooSSrOfxFiL5_lietadlo.jpg",
+      "lastUpdated": "2021-05-10T07:30:49Z",
+      "title": "Lietadla",
+      "tags": []
+    },
+    {
+      "id": 17195,
+      "author": "Pilot Jergus",
+      "dateCreated": "2021-05-10T07:39:54Z",
+      "imageLink": "http://wt.kpi.fei.tuke.sk/uploads/avDwuXBDspXKBABw_lietadlo.jpg",
+      "lastUpdated": "2021-05-10T07:39:54Z",
+      "title": "Lietadlo",
+      "tags": []
+    },
+    {
+      "id": 17198,
+      "author": "Anonymous",
+      "dateCreated": "2021-05-10T08:09:19Z",
+      "imageLink": null,
+      "lastUpdated": "2021-05-10T08:09:19Z",
+      "title": "CommentTEST",
+      "tags": []
+    },
+    {
+      "id": 17203,
+      "author": "fhd",
+      "dateCreated": "2021-05-10T08:46:14Z",
+      "imageLink": null,
+      "lastUpdated": "2021-05-10T08:46:14Z",
+      "title": "rsgg",
+      "tags": []
+    },
+    {
+      "id": 17206,
+      "author": "clanok",
+      "dateCreated": "2021-05-10T09:27:09Z",
+      "imageLink": null,
+      "lastUpdated": "2021-05-10T09:27:09Z",
+      "title": "clanok",
+      "tags": []
+    },
+    {
+      "id": 17209,
+      "author": "KATKA",
+      "dateCreated": "2021-05-10T09:43:15Z",
+      "imageLink": "https://treesunlimitednj.com/wp-content/uploads/cherry-blossom-spring-trees.jpg",
+      "lastUpdated": "2021-05-10T09:43:15Z",
+      "title": "STROM",
+      "tags": [
+        "list"
+      ]
+    }
+  ],
+  "meta": {
+    "totalCount": 1274,
+    "max": 10,
+    "offset": 0
+  }
+}

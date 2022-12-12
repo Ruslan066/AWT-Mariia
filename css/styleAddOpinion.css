@@ -1,0 +1,244 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap");
+
+.formContanier {
+    align-items: center;
+    justify-items: center;
+    background: #f7b1ab;
+    display: contents;
+    grid-template-areas: "." ".";
+}
+.opnFrm{
+    padding-left: 30px;
+}
+
+.formContanier > p {
+    margin: auto 0px;
+    margin-bottom: 10px;
+}
+
+.right-container > h1:nth-of-type(1) {
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.set {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.set > input {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    height: 38px;
+    line-height: 38px;
+    padding-left: 5px;
+}
+
+.set > input,
+label {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.set > header {
+    padding: 40px;
+}
+
+.set > label,
+input,
+.pets-photo {
+    width: 176px;
+}
+
+/*  правая часть */
+.hh3 {
+    text-align: center;
+}
+
+.part1 {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.part1 > label {
+    margin: auto 0px;
+}
+
+.part1 > input {
+    margin-left: 35px;
+}
+
+.part2 {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.part2 > label {
+    margin: auto 0px;
+}
+
+.part2 > input {
+    margin-left: 42px;
+}
+
+.part3 {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.part3 > label {
+    margin: auto 0px;
+}
+
+.part3 > input {
+    margin-left: 77px;
+    width: 500px;
+}
+
+.part4 {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.part4 > label {
+    margin: auto 0px;
+}
+
+.part4 > textarea {
+    margin-left: 10px;
+    width: 500px;
+}
+
+.part5 {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.part5 > p {
+    margin: auto 0px;
+}
+
+.part5 > .radio-container {
+    margin-left: 10px;
+    width: 500px;
+}
+
+.part6 {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.part6 > p {
+    margin: auto 0px;
+}
+
+.part6 > .radio-container {
+    margin-left: 88px;
+    width: 500px;
+}
+
+.part7 > input:hover {
+    background: rgba(247, 177, 171, 0.5);
+    transition: 0.2s all ease-in-out;
+}
+
+.part7 > input {
+    transition: 0.5s all ease-in-out;
+}
+
+.inputo {
+    height: 25px;
+    border-radius: 6px;
+    border-color: transparent;
+    background-color: white;
+}
+
+.inputtext {
+    margin-top: 10px;
+    border-radius: 6px;
+    border-color: transparent;
+    background-color: white;
+}
+
+.radio-container {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: inline-block;
+    padding: 5px;
+    width: 450px;
+    margin: auto;
+}
+
+.radio-container label {
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    display: inline-block;
+    height: 26px;
+    line-height: 26px;
+    margin: 5px auto;
+    padding: 1px 5px;
+
+    text-align: center;
+    transition: 0.2s all ease-in-out;
+}
+
+
+.radio-container input[type="radio"] {
+    display: none;
+}
+
+.radio-container input[type="radio"]:checked + label {
+    background: #f7b1ab;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.radio-container input[type="checkbox"] {
+    display: none;
+}
+
+.radio-container input[type="checkbox"]:checked + label {
+    background: #f7b1ab;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.radio-container input[type="checkbox"]:hover + label {
+    background: rgba(247, 177, 171, 0.5);
+}
+
+.radio-container input[type="radio"]:hover + label {
+    background: rgba(247, 177, 171, 0.5);
+}
+
+.part8 > button {
+    height: 26px;
+    border-radius: 6px;
+    border-color: transparent;
+    background-color: #f7b1ab;
+    margin: auto;
+}
+
+.part8 > button:hover {
+    height: 26px;
+    border-radius: 6px;
+    border-color: magenta;
+    background-color: #f7b1ab;
+}
+
+.part8 {
+    margin-top: 15px;
+    text-align: center;
+    background: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    width: 150px;
+}
+

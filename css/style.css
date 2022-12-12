@@ -1,0 +1,562 @@
+html, body {
+    background-color: #F4F1EA;
+    font-family: 'Fira Code', monospace;
+    margin: 0;
+    height: 100%;
+    color: #363539;
+}
+
+.foto1 {
+    text-align: center;
+    margin: 25px;
+}
+.fotoError{
+    margin: auto;
+    text-align: center;
+    width: 450px;
+    height: 450px;
+}
+.foto1 > img {
+    border-radius: 10px;
+    box-shadow: 0 0 6px #444;
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    transition: 1s;
+
+}
+.foto1 > img:hover {
+    transform: scale(1.05);
+}
+
+/* foto dog */
+.fotoDog {
+    text-align: center;
+    margin: 25px;
+}
+
+.fotoDog > img {
+    border-radius: 100px;
+    object-fit: cover;
+    transition: 1s;
+
+}
+.fotoDog > img:hover {
+    transform: scale(1.05);
+}
+/*  */
+
+h1, p {
+    margin: 20px;
+}
+
+.h2files {
+    text-align: center;
+    color: #363539;
+}
+
+article > div > p {
+    color: #363539;
+    text-align: revert;
+
+}
+
+.llinkbio {
+    color: #363539;
+}
+
+.llinkbio:hover {
+    color: #c09cdc;
+}
+
+.footerButtonEditPage{
+margin: 20px 0 29px 0;
+}
+.footerButtonEditPage > a{
+    text-decoration: none;
+    text-align: center;
+    border-radius: 10px;
+    padding: 9px;
+    font-size: 15px;
+    background: #d4c9bb;
+    color: #2A2A2A;
+    transition: 0.2s all ease-in-out;
+}
+.footerButtonEditPage > a:hover{
+    border: none;
+    text-align: center;
+    border-radius: 10px;
+    padding: 9px;
+    font-size: 15px;
+    color: white;
+    background: #7f7460;
+
+}
+
+/*
+стили меню вверху
+*/
+.mask {
+    background-color: #363539;
+    height: 60px;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+}
+
+.mask > table{
+    width: 100%;
+    height: 60px;
+}
+.mask > table > thead > tr > th > p{
+    margin: auto;
+    color: white;
+    text-decoration: none;
+    line-height: 3;
+}
+
+.mask > table > thead > tr > th > img{
+    margin: auto;
+    width: 40px;
+    height: 40px;
+}
+
+.mask > table > thead > tr > th:hover {
+    border-bottom: 2px solid black;
+    background-color: #2A2A2A;
+}
+
+/* стиль footer */
+.wrapper {
+    position: relative;
+    min-height: 100%;
+}
+.content {
+    padding-bottom: 80px;
+}
+.footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    background-color: #363539;
+}
+
+.footer > p {
+    margin: 30px 10px;
+    color: white;
+    position: absolute;
+}
+
+/* стиль блока на страничках */
+.mainContainier {
+    width: 95%;
+    margin: auto;
+    height: 100%;
+}
+
+.dz{
+    display: flex;
+    flex-direction: row;
+}
+.leftdz{
+    width: 40%;
+}
+.leftdz > p{
+    margin:   50px;
+}
+.rightdz  {
+    width: 60%;
+}
+.rightdz > figure {
+    text-align: center;
+
+}
+.rightdz > figure > img{
+    text-align: center;
+    box-shadow: 0 0 6px #444;
+}
+
+/*  */
+.hh33{
+    margin-bottom: 10px;
+}
+.Containier2{
+    display: flex;
+    flex-direction: row;
+}
+.leftContainier{
+    width: 60%;
+}
+.leftContainier > p{
+    margin:   50px;
+}
+.rightContainier  {
+    width: 40%;
+}
+.rightContainier > figure {
+    text-align: center;
+
+}
+.rightContainier > figure > img{
+    text-align: center;
+    box-shadow: 0 0 6px #444;
+}
+
+/* стиль таблички */
+.table-wrapper{
+    box-shadow: 0px 5px 5px rgba( 0, 0, 0, 0.2 );
+}
+
+.fl-table {
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    /*white-space: nowrap;*/
+    background-color: white;
+    table-layout: fixed;
+}
+.fl-tableOpi {
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    max-width: 100%;
+    /*white-space: nowrap;*/
+    background-color: white;
+    table-layout: fixed;
+}
+
+.fl-table td, .fl-table th {
+    text-align: center;
+    padding: 8px;
+}
+
+.fl-table td {
+    border-right: 1px solid #f8f8f8;
+    word-break: break-all;
+}
+.fl-table th {
+    word-break: break-all;
+}
+
+.fl-table thead th {
+    color: #ffffff;
+    background: #2A2A2A;
+}
+.linetr:hover{
+    background: #F4F1EA;
+}
+
+.fl-table thead th:nth-child(odd) {
+    color: #ffffff;
+    background: #363539;
+}
+
+.fl-table tr:nth-child(even) {
+    background: #F8F8F8;
+}
+.fl-table tr:nth-child(even):hover {
+    background: #F4F1EA;
+}
+
+.idd{
+    width: 100px;
+}
+/* фото с ответов*/
+.THfotoOpinions{
+    width: 100px;
+}
+
+.fotoOpinions:hover{
+
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}
+.THfotoOpinions > figure{
+    margin: 0;
+}
+.fotoOpinions{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    transition: 0.2s all ease-in-out;
+    z-index: 9999;
+}
+
+
+.opi-table{
+    font-size: 20px;
+}
+
+.lock{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+}
+
+/* articles page */
+.pages{
+    margin-bottom: 15px;
+}
+.pages > h3{
+    text-align: center;
+    height: 45px;
+    margin: auto;
+}
+.pages > h3 > input{
+    border: none;
+    width: 40px;
+    text-align: center;
+    border-radius: 10px;
+    padding: 4px;
+    font-size: 15px;
+    font-weight: bold;
+}
+.pages > h3 > a{
+    text-decoration: none;
+    text-align: center;
+    border-radius: 10px;
+    padding: 9px;
+    font-size: 15px;
+    background: white;
+    color: #2A2A2A;
+    transition: 0.2s all ease-in-out;
+}
+.pages > h3 > a:hover{
+    border: none;
+    text-align: center;
+    border-radius: 10px;
+    padding: 9px;
+    font-size: 15px;
+    background: rgba(247, 177, 171, 0.5);;
+}
+
+/* articles button nextPage prevPage */
+.button-page-container > a:hover {
+    background: rgba(247, 177, 171, 0.5);
+}
+.button-page-container {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 5px;
+    width: 390px;
+    text-align: center;
+    margin-left: auto;
+
+}
+.button-page-container > a {
+    text-decoration: none;
+    color: #2A2A2A;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    display: inline-block;
+    height: 26px;
+    line-height: 26px;
+    margin: 5px auto;
+    padding: 1px 5px;
+    text-align: center;
+    transition: 0.2s all ease-in-out;
+}
+
+.fotoArticle{
+    text-align: center;
+
+}
+.fotoArticle > img {
+    width: 500px;
+    height: 500px;
+    border-radius: 10px;
+    box-shadow: 0 0 6px #444;
+    object-fit: cover;
+}
+
+.button-com-page-container{
+    margin: 0 0 20px 0;
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+}
+.button-com-page-container > h2{
+    margin: auto 0;
+}
+.button-com-page-container > a{
+    margin: auto 5px auto 5px;
+}
+.button-com-page-container > a > img{
+    width: 25px;
+    transition: 0.2s all ease-in-out;
+}
+.button-com-page-container > a > img:hover{
+    border-radius: 10px;
+    box-shadow: 0 0 6px #444;
+}
+
+.comments{
+    width: 80%;
+    border-radius: 10px;
+}
+.comment{
+    color: black;
+    display: flex;
+    flex-direction: row;
+    height: 90%;
+    width: 90%;
+    background-color: #d4c9bb;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    margin-left: 5px;
+
+}
+
+.addComment{
+    width: 80%;
+    margin-left: 5px;
+    background-color: #d4c9bb;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+}
+.Part0{
+    color: black;
+    width: 80%;
+}
+.Part0 > a{
+    display: inline-block;
+    margin: 10px 0 10px 0;
+    width: 86%;
+    background-color: #f4f1ea;
+}
+.Part0 > a:hover{
+    background-color: #826a53;
+    color: white;
+}
+
+.Part2{
+    display: flex;
+    flex-direction: column;
+}
+
+.commentsForm{
+    margin-top: 25px;
+    width: 90%;
+}
+
+.commentIputo{
+    background-color: #f4f1ea;
+    border-radius: 5px;
+    width: 63%;
+    border-color: transparent;
+}
+.commentIputoT{
+    background-color: #f4f1ea;
+    border-radius: 5px;
+    width: 90%;
+    height: 50px;
+    margin: 5px 0 5px 0;
+    border-color: transparent;
+}
+
+.userPhotoAdd{
+    width: 50px;
+    height: 50px;
+    margin: 10px 10px 0 10px;
+}
+
+.userPhoto{
+    width: 50px;
+    height: 50px;
+    margin: auto 10px;
+}
+.commentText > h3{
+    margin: 5px 0 0 0;
+}
+.commentText > h5{
+    margin: 5px 0 0 0;
+    color: rgba(0, 0, 0, 0.5);
+}
+.commentText > p{
+    margin: 10px 0 10px 0;
+}
+
+.blockButton{
+    display: flex;
+    flex-direction: row;
+}
+
+.findTagText{
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 5px;
+    width: 250px;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: auto;
+}
+.findTagText > input{
+    border-radius: 8px;
+    border-color: transparent;
+    background-color: #F4F1EA;
+    height: 30px;
+    margin: 0;
+}
+
+.findTagText > a {
+    text-decoration: none;
+    color: #2A2A2A;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    display: inline-block;
+    height: 26px;
+    line-height: 26px;
+    margin: 5px auto;
+    padding: 1px 5px;
+    text-align: center;
+    transition: 0.2s all ease-in-out;
+}
+
+.findTagText > a:hover {
+    background: rgba(247, 177, 171, 0.5);
+}
+
+.flterTable{
+    margin: 15px 0 15px 0;
+}
+
+.filterTr > th > input{
+    border-radius: 10px;
+    border-color: transparent;
+    font-size: 15px;
+}
+.filterTr > th > a{
+    margin: auto;
+    color: white;
+    text-decoration: none;
+}
+
+
+
+/* Здесь будут все стили для устройств с viewport больше 1400 пикселей. */
+
+@media (max-width: 1100px) {
+
+}
+
+@media (max-width: 700px) {
+
+}
+
+@media (max-width: 500px) {
+
+}

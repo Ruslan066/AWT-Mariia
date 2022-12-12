@@ -1,0 +1,164 @@
+.artEditInputo {
+    height: 25px;
+    border-radius: 6px;
+    border-color: transparent;
+    background-color: white;
+    width: 250px;
+}
+
+.inputtext {
+    margin-top: 10px;
+    border-radius: 6px;
+    border-color: transparent;
+    background-color: white;
+}
+
+.artEditForm{
+    padding-left: 30px;
+}
+.artEditFormContanier {
+    align-items: center;
+    justify-items: center;
+    background: #f7b1ab;
+    display: contents;
+    grid-template-areas: "." ".";
+}
+.artEditFormContanier > p {
+    margin: auto 0;
+    margin-bottom: 10px;
+}
+
+.artEditPart1 {
+    display: flex;
+    flex-direction: row;
+
+}
+.artEditPart2 {
+    padding: 0;
+    border-style: none;
+    border-radius: 6px;
+    width: 650px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+}
+
+.artEditPart2 > button , input, p{
+margin: 10px 5px;
+}
+.artEditButton{
+    height: 31px;
+    border-radius: 6px;
+    border-color: transparent;
+    background-color: white;
+    text-decoration: none;
+    text-align: center;
+    border-style: none;
+
+    color: #2A2A2A;
+    transition: 0.2s all ease-in-out;
+}
+.artEditButton:hover{
+    background: rgba(247, 177, 171, 0.5);;
+}
+
+.artEditPart1 > label {
+    margin: auto 0;
+}
+
+.bb{
+    margin: auto 15px;
+}
+
+.i1 {
+    margin-left: 64px;
+}
+.i2 {
+    margin-left: 72px;
+}
+.i3 {
+    margin-left: 20px;
+}
+
+.linkAsButton{
+    text-decoration: none;
+    text-align: center;
+    border-radius: 10px;
+    padding: 9px;
+    font-size: 15px;
+    background: white;
+    color: #2A2A2A;
+    transition: 0.2s all ease-in-out;
+}
+.linkAsButton:hover{
+    border: none;
+    text-align: center;
+    border-radius: 10px;
+    padding: 9px;
+    font-size: 15px;
+    background: rgba(247, 177, 171, 0.5);
+}
+
+/**/
+
+
+.input-file {
+    position: relative;
+    display: inline-block;
+}
+.input-file-text {
+    padding: 0 10px;
+    line-height: 40px;
+    text-align: left;
+    height: 31px;
+    display: block;
+    float: left;
+    box-sizing: border-box;
+    width: 200px;
+    border-radius: 6px 0px 0 6px;
+    border: 1px solid #ddd;
+}
+.bbb{
+    margin: 0px;
+}
+.input-file-btn {
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    font-size: 14px;
+    color: #2A2A2A;
+    text-align: center;
+    border-radius: 6px;
+    background-color: white;
+    line-height: 22px;
+    padding: 7.5px;
+
+    transition: background-color 0.2s;
+}
+.input-file input[type=file] {
+    position: relative;
+    margin: 7.5px 10px;
+    z-index: -1;
+    opacity: 0;
+    display: block;
+    width: 0;
+    height: 0;
+}
+
+/* Focus */
+.input-file input[type=file]:focus + .input-file-btn {
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+/* Hover/active */
+.input-file:hover .input-file-btn {
+    background-color:rgba(247, 177, 171, 0.5);
+}
+.input-file:active .input-file-btn {
+    background-color: rgba(247, 177, 171, 0.5);
+}
+
+/* Disabled */
+.input-file input[type=file]:disabled + .input-file-btn {
+    background-color: #eee;
+}

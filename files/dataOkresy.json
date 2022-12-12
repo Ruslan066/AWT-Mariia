@@ -1,0 +1,71 @@
+{
+  "okresy": [
+    {
+      "id": 1,
+      "title": "Dubravka a Karlova Ves",
+      "descriptions": "Okresy majú vlastnú infraštruktúru a nachádzajú sa na odľahlom mieste mimo centra. Karlová Ves sa nachádza na kopci, zatiaľ čo Dúbravka je na jeho úpätí. Čas potrebný na presun do centra mesta je približne rovnaký."
+    },
+    {
+      "id": 2,
+      "title": "Nové Mesto",
+      "descriptions": "Jedna z najobľúbenejších štvrtí. Má veľa parkov, najväčšie jazero Kuchajda, množstvo promenád a blízkosť starého mesta."
+    },
+    {
+      "id": 3,
+      "title": "Ružinovský okres",
+      "descriptions": "Okolie je dosť podobné Novému Mestu. Množstvo nových budov, parkov a veľkých nákupných centier, dobré cestné spojenie a dobrá dostupnosť verejnou dopravou."
+    },
+    {
+      "id": 4,
+      "title": "Okres Petřalka",
+      "descriptions": "Najväčšia štvrť mesta. Je to obytná oblasť s veľkými sídliskami. Parkovanie je dostupnejšie. Blízkosť starého mesta. V oblasti je mierny problém s pešími zónami a infraštruktúrou. Hlavná pešia zóna v blízkosti nákupného centra Aupark."
+    },
+    {
+      "id": 5,
+      "title": "Koliba",
+      "descriptions": "Elitná časť mesta, ktorá pozostáva prevažne zo súkromného sektora, mestských domov a chát. Chýbajúca infraštruktúra, ale pomerne rýchly prístup do centra mesta. Vhodné, keď majú všetci členovia rodiny auto a trochu porovnateľné s bývaním v súkromnom sektore mimo mesta."
+    },
+    {
+      "id": 6,
+      "title": "Niva",
+      "descriptions": "To zahŕňa celý súbor nových budov SkyPark, Panorama City, Klingerka a mnoho ďalších nových budov. Jedna z najžiadanejších oblastí a zároveň najdrahšia z hľadiska bytov. Veľká dopravná križovatka, veľká dostupnosť luxusných bytov."
+    },
+    {
+      "id": 7,
+      "title": "Staré Mesto",
+      "descriptions": "Miesto, kde žijú všetci turisti. Elitné byty sú celkom zaujímavo urobené a chránené, zatiaľ čo ostatné formáty bytov čelia obrovskému problému s parkovaním, množstvu zbytočného hluku a objektu turistov, ktorí sa tu prechádzajú od rána do neskorej noci. Oblasť, ktorú odporúčame, je buď ďaleko od centra starého mesta, alebo ide o špičkové nehnuteľnosti, ostatné majú viac mínusov ako plusov."
+    }
+  ],
+  "casti": [
+    {
+      "id": 1,
+      "okres": "Bratislava I",
+      "obyvatelstvo": "42 546",
+      "rozloha": "9,57km²"
+    },
+    {
+      "id": 2,
+      "okres": "Bratislava II",
+      "obyvatelstvo": "125 001",
+      "rozloha": "92,49km²"
+    },
+    {
+      "id": 3,
+      "okres": "Bratislava III",
+      "obyvatelstvo": "76 694",
+      "rozloha": "74,67km²"
+    },
+    {
+      "id": 4,
+      "okres": "Bratislava IV",
+      "obyvatelstvo": "105 154",
+      "rozloha": "96,7 km²"
+    },
+    {
+      "id": 5,
+      "okres": "Bratislava V",
+      "obyvatelstvo": "122 296",
+      "rozloha": "94,2 km²"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "cena": [
+    {
+      "id": 1,
+      "title": "Nájomca alebo novostavba"
+    },
+    {
+      "id": 2,
+      "title": "Poloha centra alebo nákupného strediska"
+    },
+    {
+      "id": 3,
+      "title": "Parking v cene alebo nie"
+    },
+    {
+      "id": 4,
+      "title": "Rekonštrukcia a stav interiéru"
+    },
+    {
+      "id": 5,
+      "title": "Prítomnosť vybavenia v byte v podobe klimatizácie, umývačky riadu atď."
+    }
+  ],
+  "text": "Nájomné zahŕňa aj služby, pretože prenajímateľ jednoducho platí štandardnú mesačnú cenu a raz alebo dvakrát ročne zvýši náklady. A potom môžete vykonať prepočet."
+}
