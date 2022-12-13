@@ -43,7 +43,7 @@
                         <th onclick='window.location.href="#addOpinion"'><img src="awt/header/list.png"></th>
                         <th onclick='window.location.href="#addarticles"'><img src="awt/header/copy-writing.png"></th>
                         <th onclick='window.location.href="#articles/1/0"'><img src="awt/header/application.png">
-                        <th onclick='window.location.href="#SignIn"'><img src="awt/header/application.png">
+                        <th onclick='window.location.href="#SignIn"'><img src="awt/header/google.png">
                         </th>
                         <!--ссылка на первую страничку со статьями.
                         articles/1/0
@@ -447,8 +447,7 @@
                             {{/nextPage}}
                         </div>
                         <div class="findTagText">
-                            <input type="text" id="tagtext1" placeholder="{{tagtext}}">
-                            <a href="#articles/1/0/0/{{tagtext}}">find</a>
+                            <a href="#articles/1/0/0/for/">find my articles</a>
                             <a href="#show">show filter</a>
                             <a href="#hide">hide filter</a>
                         </div>
@@ -462,37 +461,37 @@
                     <table class="fl-table flterTable opi-table" id="tableF">
                         <thead>
                         <tr>
-                            <th>id</th>
+<!--                            <th>id</th>-->
                             <th>Author</th>
                             <th>Title</th>
-                            <th>Date Created</th>
+<!--                            <th>Date Created</th>-->
                             <th>Tag</th>
-                            <th>Count comments</th>
+<!--                            <th>Count comments</th>-->
                             <th>Search</th>
                         </tr>
                         </thead>
                         <thead>
                         <tr class="filterTr">
-                            <th>
-                                <input type="number" id="findId">
-                            </th>
+<!--                            <th>-->
+<!--                                <input type="number" id="findId">-->
+<!--                            </th>-->
                             <th>
                                 <input type="text" id="findAuthor" value="{{findAuthor}}">
                             </th>
                             <th>
-                                <input type="text" id="findTitle">
+                                <input type="text" id="findTitle" value="{{title}}">
                             </th>
+<!--                            <th>-->
+<!--                                <input type="text" id="findDateCreated">-->
+<!--                            </th>-->
                             <th>
-                                <input type="text" id="findDateCreated">
+                                <input type="text" id="tagText" value="{{tagText}}">
                             </th>
+<!--                            <th>-->
+<!--                                <input type="number" id="findCountComments">-->
+<!--                            </th>-->
                             <th>
-                                <input type="text" id="tagtext" value="{{tagtext}}">
-                            </th>
-                            <th>
-                                <input type="number" id="findCountComments">
-                            </th>
-                            <th>
-                                <a href="#articles/1/0/0/{{tagtext}}/{{findAuthor}}">find</a>
+                                <a href="#articles/1/0/0/{{tagText}}/{{findAuthor}}/{{title}}">find</a>
                             </th>
                         </tr>
                         </thead>

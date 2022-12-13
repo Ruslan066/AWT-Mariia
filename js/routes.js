@@ -227,6 +227,7 @@ function totalCountf() {
 
 function totalCountComments(articleId) {
     var urlbase = `https://wt.kpi.fei.tuke.sk/api/article/${articleId}/comment`;
+
     function reqListener1() {
         console.log(this.responseText)
         if (this.status === 200) {
@@ -264,7 +265,7 @@ var display = false;
 //totalCount - количество страничек
 //offset - количество статей
 //jump - число (флаг) с какой статьи, отображать статьи-->
-function fetchAndDisplayArticles(targetElm, current, offset, jump, tagtextt2, findAuthor2) {
+function fetchAndDisplayArticles(targetElm, current, offset, jump, tagtextt2, findAuthor2, title2) {
     //вызываем функцию подсчета статей
     totalCountf();
     //делим количество статей на 20, чтобы узнать сколько страничек нам потребуется
@@ -276,22 +277,26 @@ function fetchAndDisplayArticles(targetElm, current, offset, jump, tagtextt2, fi
     offset = parseInt(offset);
     jump = parseInt(jump);
 
+
     //data4rendering - Переменная массив. С неё мы получаем данные в html файле
     //Хранит в себе:
     //offsets - с какой статьи - отображать статьи
     //offsets20 - до какой статьи - отображать статьи + 20 (для отображения в заголовке)
     //currPage - количество страничек
     //textarticles - массив статей полученных с сайта туке
-    var tagtextInput = document.getElementById("tagtext");
+    var tagtextInput = document.getElementById("tagText");
     var findAuthor = document.getElementById("findAuthor");
+    var title = document.getElementById("findTitle");
 
     var data4rendering = {
-        tagtext: tagtextInput?.value || null,
+        tagText: tagtextInput?.value || null,
         findAuthor: findAuthor?.value || null,
+        title: title?.value || null,
         offsets: offset,
         offsets20: offset,
         currPage: current,
         pageCount: totalCount,
+        tagtextt2: tagtextt2,
         textarticles: "JSON.parse(this.responseText)"
     };
     //создаем 2 переменных чтобы из них брать данные о количестве стр в html файле
@@ -389,12 +394,23 @@ function fetchAndDisplayArticles(targetElm, current, offset, jump, tagtextt2, fi
     //так как это строка, а нам в неё нужно передать значение с переменной, то используем такую конструкцию
     //${data4rendering.offsets} - ${переменная} - называется экранирование переменных
     let url = `https://wt.kpi.fei.tuke.sk/api/article?max=20&offset=${data4rendering.offsets}`;
-    if (data4rendering.tagtext !== null) {
-        url += `&tag=${data4rendering.tagtext}`;
+    //alert("[" + tagtextt2 + "]");
+    //if (tagtextt2 !== undefined && tagtextt2 !== '') {
+
+    if (data4rendering.tagText !== null) {
+        url += `&tag=${data4rendering.tagText}`;
     }
     if (data4rendering.findAuthor !== null) {
         url += `&author=${data4rendering.findAuthor}`;
     }
+    if (data4rendering.title !== null) {
+        url += `&title=${data4rendering.title}`;
+    }
+    if (tagtextt2 === "for") {
+        url = `https://wt.kpi.fei.tuke.sk/api/article?max=20&offset=${data4rendering.offsets}&tag=${tagtextt2}`;
+    }
+    //alert("[" + data4rendering.tagtext + "]");
+    //tagtextt2 = data4rendering.tagtextt2;
 
     //alert(url);
 
@@ -580,7 +596,6 @@ function fetchAndProcessArticle(targetElm, artIdFromHash, offsetFromHash, totalC
             if (forEdit) {
 
 
-
                 responseJSON.formTitle = "Article Edit";
                 responseJSON.submitBtTitle = "Save article";
                 //                       #article/${article.id}/${data4rendering.textarticles.meta.offset}/${data4rendering.textarticles.meta.totalCount}
@@ -620,13 +635,13 @@ function fetchAndProcessArticle(targetElm, artIdFromHash, offsetFromHash, totalC
                 if (totalCount === 0)
                     Tocom = 0;
                 //------------
-                console.log("comOffsets: "+ comOffsets);
-                console.log("Tocom: "+ Tocom);
+                console.log("comOffsets: " + comOffsets);
+                console.log("Tocom: " + Tocom);
 
-                console.log("comPage: "+ comPage);
-                console.log("totalCount: "+ totalCount);
-                console.log("oldpageComments: "+ oldpageComments);
-                if(comPage.toString() === totalCount.toString() && comOffsets.toString()===Tocom.toString()) {
+                console.log("comPage: " + comPage);
+                console.log("totalCount: " + totalCount);
+                console.log("oldpageComments: " + oldpageComments);
+                if (comPage.toString() === totalCount.toString() && comOffsets.toString() === Tocom.toString()) {
                     console.log("rrrrrrrrrrrrrr");
                     if (comPage > 1) {
                         data.prevPage = parseInt(comPage) - 1;
@@ -636,8 +651,7 @@ function fetchAndProcessArticle(targetElm, artIdFromHash, offsetFromHash, totalC
                     }
                     getComments(artIdFromHash, Tocom);
                     oldpageComments = totalCount;
-                }
-                else {
+                } else {
                     console.log("reeeeeeeeeee");
                     if (comPage > 1) {
                         data.prevPage = parseInt(comPage) - 1;
@@ -648,7 +662,6 @@ function fetchAndProcessArticle(targetElm, artIdFromHash, offsetFromHash, totalC
                     if (comPage === oldpageComments) {
                         data.comOffsets = 0;
                     }
-
                     if (comPage > oldpageComments) {
                         data.comOffsets += 10;
                     }
@@ -660,8 +673,6 @@ function fetchAndProcessArticle(targetElm, artIdFromHash, offsetFromHash, totalC
                     oldpageComments = comPage;
                     getComments(artIdFromHash, data.comOffsets);
                 }
-
-
 
 
                 data.responseJSON1 = responseJSON;
@@ -679,8 +690,8 @@ function fetchAndProcessArticle(targetElm, artIdFromHash, offsetFromHash, totalC
                     `#artDelete/${responseJSON.id}/${currPage}/${offsets}`;
                 data.commentAdd =
                     `#commentPost/${responseJSON.id}/${offsetFromHash}/${totalCountFromHash}/${currPage}/${offsets}/${responseJSON.id}/${Tfcom}/${Tocom}`;
-                    //`#commentPost/${responseJSON.id}/${currPage}/${offsets}`;
-                    //`#commentPost/${data}`;
+                //`#commentPost/${responseJSON.id}/${currPage}/${offsets}`;
+                //`#commentPost/${data}`;
 
                 document.getElementById(targetElm).innerHTML =
                     Mustache.render(
