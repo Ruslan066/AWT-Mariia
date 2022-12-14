@@ -102,8 +102,7 @@ export default [
     {
         hash: "SignIn",
         target: "router-view",
-        getTemplate: (targetElm) =>
-            document.getElementById(targetElm).innerHTML = document.getElementById("template-SignIn").innerHTML
+        getTemplate: SigLogIn
     }
 ];
 //6 сдача
@@ -137,6 +136,7 @@ function total() {
 //функция берет данные из localStorage браузера
 //помещает их в переменную opinions
 function createHtml4opinions(targetElm) {
+    var name = googleUser.getBasicProfile().getName();
     //переменная localStorage
     const opinionsFromStorage = localStorage.myTreesComments;
     //переменная с данными
@@ -150,6 +150,7 @@ function createHtml4opinions(targetElm) {
             opinion.created = (new Date(opinion.created)).toDateString();
         });
     }
+    opinions.name = name;
     //генерируем (отображаем) страничку
     //"template-opinions" - какой скрипт будет запущен
     //opinions - передаем переменную. В html файле будут данные браться с неё
@@ -732,3 +733,48 @@ function Hidef() {
     element.style.cssText = 'display: none';
     display = false;
 }
+var googleUser = {};
+var userr = {
+    id: "id",
+    name: "Name",
+    imgUrl: "url",
+    email: "email"
+}
+function SigLogIn(targetElm){
+    startApp(googleUser, userr);
+    //userr.name = localStorage.getItem('user_name');
+
+    document.getElementById(targetElm).innerHTML =
+        Mustache.render(
+            document.getElementById("template-SignIn").innerHTML,
+            userr
+        );
+}
+
+// var googleUser = {};
+// var startApp = function() {
+//     gapi.load('auth2', function(){
+//         // Retrieve the singleton for the GoogleAuth library and set up the client.
+//
+//         auth2 = gapi.auth2.init({
+//             client_id: '212489423994-u5pqse4dhbod11f16u7ntlui8i64q2hu.apps.googleusercontent.com',
+//             cookiepolicy: 'single_host_origin',
+//             plugin_name: "chat"
+//             // Request scopes in addition to 'profile' and 'email'
+//             //scope: 'additional_scope'
+//         });
+//         attachSignin(document.getElementById('customBtn'));
+//     });
+// };
+//
+// function attachSignin(element) {
+//     //console.log(element.id || null);
+//     auth2.attachClickHandler(element, {},
+//         function(googleUser) {
+//             document.getElementById('name').innerText = "Signed in: " +
+//                 googleUser.getBasicProfile().getName();
+//         }, function(error) {
+//
+//             alert(JSON.stringify(error, undefined, 2));
+//         });
+// }

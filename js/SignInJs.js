@@ -1,14 +1,56 @@
-function onSignIn(googleUser) {
-    var profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+
+var startApp = function (googleUser, userr) {
+    gapi.load('auth2', function () {
+        // Retrieve the singleton for the GoogleAuth library and set up the client.
+        auth2 = gapi.auth2.init({
+            client_id: '212489423994-u5pqse4dhbod11f16u7ntlui8i64q2hu.apps.googleusercontent.com',
+            cookiepolicy: 'single_host_origin',
+            plugin_name: "chat"
+            // Request scopes in addition to 'profile' and 'email'
+            //scope: 'additional_scope'
+        });
+        attachSignin(document.getElementById('customBtn'), googleUser, userr);
+    });
+};
+
+
+
+function attachSignin(element, googleUser, userr) {
+    //console.log(element.id || null);
+    auth2.attachClickHandler(element, {},
+        function (googleUser, name) {
+            myStorage = window.localStorage;
+            var profile = googleUser.getBasicProfile();
+            userr.id = profile.getId();
+            localStorage.setItem('user_name', profile.getName());
+
+            userr.name = profile.getName();
+            userr.imgUrl = profile.getImageUrl();
+            userr.email = profile.getEmail();
+
+            console.log('ID: ' + profile.getId());
+            console.log('Name: ' + profile.getName());
+            name = profile.getName();
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail());
+
+            document.getElementById('name').innerText = "Signed in: " +
+                googleUser.getBasicProfile().getName();
+
+
+
+        }, function (error) {
+
+            // alert(JSON.stringify(error, undefined, 2));
+        });
 }
 
 function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
-        console.log('User signed out.');
+        alert("Boli ste odhlásený...");
+        // znovu načítame stránku a zobrazíme tlačidlo pre prihlásenie
+        localStorage.clear();
+        location.reload();
     });
 }

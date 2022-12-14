@@ -7,14 +7,16 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/styleAddOpinion.css" rel="stylesheet">
     <link href="css/styleArticleEdit.css" rel="stylesheet">
-    <title>Blog o bývaní v Bratislave</title>
-
-    <meta name="google-signin-client_id"
-          content="http://212489423994-u5pqse4dhbod11f16u7ntlui8i64q2hu.apps.googleusercontent.com"/>
+    <title>Mariia Blog o bývaní v Bratislave</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+    <script src="https://apis.google.com/js/api:client.js"></script>
+<!--    <meta name="google-signin-client_id"-->
+<!--          content="212489423994-u5pqse4dhbod11f16u7ntlui8i64q2hu.apps.googleusercontent.com"/>-->
+<!--    <script src="https://apis.google.com/js/platform.js"></script>-->
+<!--    <meta name="google-signin-scope" content="profile email">-->
+<!--    <script src="https://apis.google.com/js/api.js"></script>-->
+    <meta name="google-signin-client_id" content="212489423994-u5pqse4dhbod11f16u7ntlui8i64q2hu.apps.googleusercontent.com"/>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="https://apis.google.com/_/scs/abc-static/_/js/k=gapi.lb.ru.jp958WhMr5A.O/m=signin2/rt=j/sv=1/d=1/ed=1/rs=AHpOoo9q4p0UPb8scjvctQwOHriJlFwb5g/cb=gapi.loaded_0?le=scs"
-            async=""></script>
-
 
 </head>
 
@@ -89,22 +91,29 @@
             </div>
         </script>
 
-
         <script src="js/SignInJs.js"></script>
-
+<!--        <script>startApp();</script>-->
         <script id="template-SignIn" type="text/template">
+
             <!--главный div в котором нходится всё что должно отображатся именно на "Welcome page" страничке -->
             <div class="mainContainier">
                 <!--заголовок названия странички-->
-                <h2 class="h2files">SignIn!</h2>
-
-                <!--текст на страничке-->
-                <div class="g-signin2" data-onsuccess="onSignIn">
-                    <p>jsjsjsjs</p>
+                <h2 class="h2files">SignIn! {{name}}</h2>
+                <div id="gSignInWrapper">
+                    <span class="label">Sign in with:</span>
+                    <div id="customBtn" class="customGPlusSignIn">
+                        <span class="icon"></span>
+                        <span class="buttonText">Google</span>
+                    </div>
                 </div>
+                <div id="name"></div>
 
-                <a href="#" onclick="onSignIn();">Sign in</a>
-                <a href="#" onclick="signOut();">Sign out</a>
+                <button onclick="signOut()"> exit</button>
+                <img src="{{imgUrl}}">
+            </div>
+            <div id="contents">
+                <p>Prihláste sa:</p>
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>
             </div>
         </script>
 
@@ -223,7 +232,7 @@
             <!--главный div в котором нходится всё что должно отображатся именно на страничке "Visitor Opinions" -->
             <div class="mainContainier">
                 <!--заголовок названия странички-->
-                <h2 class="h2files">Visitor Opinions</h2>
+                <h2 class="h2files">Visitor Opinions {{name}}</h2>
                 <!--div в котором нходится табличка с ответами пользователя-->
                 <div class="table-wrapper">
                     <!--табличка с ответами пользователя-->
@@ -461,35 +470,35 @@
                     <table class="fl-table flterTable opi-table" id="tableF">
                         <thead>
                         <tr>
-<!--                            <th>id</th>-->
+                            <!--                            <th>id</th>-->
                             <th>Author</th>
                             <th>Title</th>
-<!--                            <th>Date Created</th>-->
+                            <!--                            <th>Date Created</th>-->
                             <th>Tag</th>
-<!--                            <th>Count comments</th>-->
+                            <!--                            <th>Count comments</th>-->
                             <th>Search</th>
                         </tr>
                         </thead>
                         <thead>
                         <tr class="filterTr">
-<!--                            <th>-->
-<!--                                <input type="number" id="findId">-->
-<!--                            </th>-->
+                            <!--                            <th>-->
+                            <!--                                <input type="number" id="findId">-->
+                            <!--                            </th>-->
                             <th>
                                 <input type="text" id="findAuthor" value="{{findAuthor}}">
                             </th>
                             <th>
                                 <input type="text" id="findTitle" value="{{title}}">
                             </th>
-<!--                            <th>-->
-<!--                                <input type="text" id="findDateCreated">-->
-<!--                            </th>-->
+                            <!--                            <th>-->
+                            <!--                                <input type="text" id="findDateCreated">-->
+                            <!--                            </th>-->
                             <th>
                                 <input type="text" id="tagText" value="{{tagText}}">
                             </th>
-<!--                            <th>-->
-<!--                                <input type="number" id="findCountComments">-->
-<!--                            </th>-->
+                            <!--                            <th>-->
+                            <!--                                <input type="number" id="findCountComments">-->
+                            <!--                            </th>-->
                             <th>
                                 <a href="#articles/1/0/0/{{tagText}}/{{findAuthor}}/{{title}}">find</a>
                             </th>
