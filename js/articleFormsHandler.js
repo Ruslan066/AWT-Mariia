@@ -107,7 +107,7 @@ export default class articleFormsHandler {
         this.formElements.namedItem('btCancelFileUpload').onclick = () => this.cancelFileUpload();
 
         artForm.onsubmit = (event) => this.processArtEditFrmData(event);
-        this.articleId = null;
+        this.articleId = 1;
         this.flag = 0;
         this.methodd = 'POST'
     }

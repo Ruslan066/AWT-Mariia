@@ -10,12 +10,13 @@
     <title>Mariia Blog o bývaní v Bratislave</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
     <script src="https://apis.google.com/js/api:client.js"></script>
-<!--    <meta name="google-signin-client_id"-->
-<!--          content="212489423994-u5pqse4dhbod11f16u7ntlui8i64q2hu.apps.googleusercontent.com"/>-->
-<!--    <script src="https://apis.google.com/js/platform.js"></script>-->
-<!--    <meta name="google-signin-scope" content="profile email">-->
-<!--    <script src="https://apis.google.com/js/api.js"></script>-->
-    <meta name="google-signin-client_id" content="212489423994-u5pqse4dhbod11f16u7ntlui8i64q2hu.apps.googleusercontent.com"/>
+    <!--    <meta name="google-signin-client_id"-->
+    <!--          content="212489423994-u5pqse4dhbod11f16u7ntlui8i64q2hu.apps.googleusercontent.com"/>-->
+    <!--    <script src="https://apis.google.com/js/platform.js"></script>-->
+    <!--    <meta name="google-signin-scope" content="profile email">-->
+    <!--    <script src="https://apis.google.com/js/api.js"></script>-->
+    <meta name="google-signin-client_id"
+          content="212489423994-u5pqse4dhbod11f16u7ntlui8i64q2hu.apps.googleusercontent.com"/>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 
 </head>
@@ -88,32 +89,45 @@
                     <p>Kontaktovať: <a class="llinkbio" href="https://www.instagram.com/marry.tell/">Sukhachova
                         Mariia</a>, mariia.sukhachova@student.tuke.sk</p>
                 </nav>
+                <button onclick="start()"> fun </button>
             </div>
         </script>
 
         <script src="js/SignInJs.js"></script>
-<!--        <script>startApp();</script>-->
+        <!--        <script>startApp();</script>-->
         <script id="template-SignIn" type="text/template">
 
             <!--главный div в котором нходится всё что должно отображатся именно на "Welcome page" страничке -->
             <div class="mainContainier">
                 <!--заголовок названия странички-->
-                <h2 class="h2files">SignIn! {{name}}</h2>
-                <div id="gSignInWrapper">
-                    <span class="label">Sign in with:</span>
-                    <div id="customBtn" class="customGPlusSignIn">
-                        <span class="icon"></span>
-                        <span class="buttonText">Google</span>
+                <h2 class="h2files">Welcome - {{isSingIn}}</h2>
+                <div class="gooogle">
+                    <div id="userBlock" class="infoGoogle">
+                        <img class="imgGoogle" src="{{imgUrl}}" onerror="this.src='/awt/fig/no-image-available.jpg'">
+                        <div >
+                            <div class="userInfo">
+                                <h2 class="h2files">Name: </h2>
+                                <h3>{{name}}</h3>
+                            </div>
+                            <div class="userInfo">
+                                <h2 class="h2files">Email: </h2>
+                                <h3>{{email}}</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="BtnGoogle" class="BtnGoogle">
+                        <div id="gSignInWrapper">
+
+                            <div id="customBtn" class="customGPlusSignIn ">
+                                <span class="icon"></span>
+                                <span class="buttonText">Google</span>
+                            </div>
+                        </div>
+
+                        <button class="customGPlusSignIn knopkaExit" onclick="signOut()"> exit</button>
                     </div>
                 </div>
-                <div id="name"></div>
-
-                <button onclick="signOut()"> exit</button>
-                <img src="{{imgUrl}}">
-            </div>
-            <div id="contents">
-                <p>Prihláste sa:</p>
-                <div class="g-signin2" data-onsuccess="onSignIn"></div>
             </div>
         </script>
 
@@ -314,7 +328,7 @@
                         <!--надпись-->
                         <label for="meno">Vaše meno:</label>
                         <!--поле ввода-->
-                        <input type="text" name="meno" id="meno" class="inputo" size="20" maxlength="50"
+                        <input value="{{name}}" type="text" name="meno" id="meno" class="inputo" size="20" maxlength="50"
                                placeholder="Mariia" required/>
                     </div>
                     <!--2 div блок "Váš mail"
@@ -323,7 +337,7 @@
                         <!--надпись-->
                         <label for="email">Váš mail:</label>
                         <!--поле ввода-->
-                        <input type="text" name="email" id="email" class="inputo" size="20" maxlength="50"
+                        <input value="{{email}}" type="text" name="email" id="email" class="inputo" size="20" maxlength="50"
                                placeholder="mail@gmail.com" required/>
                     </div>
                     <!--3 div блок "Foto"
@@ -406,6 +420,7 @@
         <!--JavaScript code, inserted as a module-->
         <script src="js/index.js" type="module"></script>
         <script src="js/articleFormsHandler.js"></script>
+        <script src="js/udpFan.js"></script>
 
         <!-- Articles page -->
         <script id="template-articles" type="text/template">
@@ -723,7 +738,7 @@
 
                             <label class="input-file">
                                 <input class="artEditButton" type="file" id="flElm" name="file"
-                                       accept="image/jpeg, image/png">
+                                       accept="image/jpeg/gif/mov/mp4, image/png/gif/mov/mp4">
                                 <span class="input-file-btn">Выберите файл</span>
                             </label>
                             <!--<input type="file" id="flElm" name="file" accept="image/jpeg, image/png" class="artEditButton" placeholder="Load"/>-->

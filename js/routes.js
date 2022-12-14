@@ -44,7 +44,11 @@ export default [
         hash: "addOpinion",
         target: "router-view",
         getTemplate: (targetElm) => {
-            document.getElementById(targetElm).innerHTML = document.getElementById("template-addOpinion").innerHTML;
+            document.getElementById(targetElm).innerHTML =
+                Mustache.render(
+                    document.getElementById("template-addOpinion").innerHTML,
+                    userr
+                );
             document.getElementById("opnFrm").onsubmit = processOpnFrmData;
         }
     },
@@ -136,7 +140,7 @@ function total() {
 //функция берет данные из localStorage браузера
 //помещает их в переменную opinions
 function createHtml4opinions(targetElm) {
-    var name = googleUser.getBasicProfile().getName();
+    //var name = googleUser.getBasicProfile().getName();
     //переменная localStorage
     const opinionsFromStorage = localStorage.myTreesComments;
     //переменная с данными
@@ -467,35 +471,35 @@ function getRndInteger(min, max) {
 
 //function addComment(targetElm, articleId, currPage, offsets) {
 function addComment(targetElm, articleId, offsetFromHash, totalCount, currPage, offsets, articleId2, current, comOffsets) {
-    /*let author = ["Willie Kim", "Stefan Moran", "Isha Allen", "Elliot Bloggs",
-        "Elijah Cuevas", "Gabrielle Hayes", "Devon Benjamin", "Zeeshan Matthews"];
-
-    let text = ["I don't know what I'd do without you",
-        "Sending you love and virtual hugs!",
-        "I care for you and I'm thinking about you",
-        "You are a special person to me",
-        "I am lucky that I know you",
-        "You mean the world to me",
-        "It's a real gift that I have you in my life"];*/
+    // let author = ["Willie Kim", "Stefan Moran", "Isha Allen", "Elliot Bloggs",
+    //     "Elijah Cuevas", "Gabrielle Hayes", "Devon Benjamin", "Zeeshan Matthews"];
+    //
+    // let text = ["I don't know what I'd do without you",
+    //     "Sending you love and virtual hugs!",
+    //     "I care for you and I'm thinking about you",
+    //     "You are a special person to me",
+    //     "I am lucky that I know you",
+    //     "You mean the world to me",
+    //     "It's a real gift that I have you in my life"];
     const commentsData = {
         text: document.getElementById("commentcontent").value.trim(),
         author: document.getElementById("commentauthor").value.trim()
     };
-    /*for (let i = 0; i < 42; i++) {
-        commentsData.author = author[getRndInteger(0,7)];
-        commentsData.text = text[getRndInteger(0,7)];*/
-    const postReqSettings = //an object wih settings of the request
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8',
-            },
-            body: JSON.stringify(commentsData)
-        };
-    fetch(`https://wt.kpi.fei.tuke.sk/api/article/${articleId}/comment`, postReqSettings)
-        .then(() => window.location.hash = `#article/${articleId}/${offsetFromHash}/${totalCount}/${currPage}/${offsets}/${articleId2}/${current}/${comOffsets}`);
+    //for (let i = 0; i < 1502; i++) {
+        commentsData.author = author[getRndInteger(0, 7)];
+        commentsData.text = text[getRndInteger(0, 7)];
+        const postReqSettings = //an object wih settings of the request
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8',
+                },
+                body: JSON.stringify(commentsData)
+            };
+        fetch(`https://wt.kpi.fei.tuke.sk/api/article/${articleId}/comment`, postReqSettings)
+            .then(() => window.location.hash = `#article/${articleId}/${offsetFromHash}/${totalCount}/${currPage}/${offsets}/${articleId2}/${current}/${comOffsets}`);
+    //}
 }
-
 function addArtDetailLink2ResponseJson(data4rendering) {
 
     data4rendering.textarticles.articles = data4rendering.textarticles.articles.map(
@@ -523,7 +527,7 @@ function addArticle(targetElm) {
     var d = new Date();
     var data = {
         id: 19290,
-        author: "Mariia",
+        author: userr.name,
         dateCreated: d.toISOString(),
         imageLink: "",
         title: "",
@@ -734,15 +738,26 @@ function Hidef() {
     display = false;
 }
 var googleUser = {};
+let auth22 = {}
 var userr = {
     id: "id",
-    name: "Name",
-    imgUrl: "url",
-    email: "email"
+    name: null,
+    imgUrl: null,
+    email: null
 }
+
 function SigLogIn(targetElm){
+
+    //let auth22 = window.localStorage.getItem("auth223");
+    //console.log(JSON.parse(newObject));
     startApp(googleUser, userr);
     //userr.name = localStorage.getItem('user_name');
+    userr.isSingIn = "You are not sign in account :(";
+
+    if(userr.name !== null){
+        userr.isSingIn = "You are sign in account :)";
+    }
+
 
     document.getElementById(targetElm).innerHTML =
         Mustache.render(
