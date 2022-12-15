@@ -9,15 +9,20 @@
     <link href="css/styleArticleEdit.css" rel="stylesheet">
     <title>Mariia Blog o bývaní v Bratislave</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
-    <script src="https://apis.google.com/js/api:client.js"></script>
-    <!--    <meta name="google-signin-client_id"-->
-    <!--          content="212489423994-u5pqse4dhbod11f16u7ntlui8i64q2hu.apps.googleusercontent.com"/>-->
-    <!--    <script src="https://apis.google.com/js/platform.js"></script>-->
-    <!--    <meta name="google-signin-scope" content="profile email">-->
-    <!--    <script src="https://apis.google.com/js/api.js"></script>-->
+
+
     <meta name="google-signin-client_id"
-          content="212489423994-u5pqse4dhbod11f16u7ntlui8i64q2hu.apps.googleusercontent.com"/>
+              content="212489423994-u5pqse4dhbod11f16u7ntlui8i64q2hu.apps.googleusercontent.com"/>
+
+    <meta name="google-signin-scope" content="profile email">
+
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://apis.google.com/js/api:client.js"></script>
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
     <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://apis.google.com/js/platform.js"></script>
 
 </head>
 
@@ -32,7 +37,7 @@
             <button id="menuTitle" style="display: none">Menu</button>
             <!--div с табличкой-->
             <div class="mask">
-                <!--список ссылок на разделы сайта
+                <!--список ссылок на разделы сайтаa
                 сделал в виде таблички-->
                 <table>
                     <thead>
@@ -307,8 +312,8 @@
                                 <th>{{name}}</th>
                                 <th>{{comment}}</th>
                                 <th>{{email}}</th>
-                                <th>{{contactChoice1}}</th>
-                                <th>{{contactChoice2}}</th>
+                                <th>{{okres}}</th>
+                                <th>{{byvanie}}</th>
                             </tr>
                         </section>
                         <!--конец блока со строками ответов-->

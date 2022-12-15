@@ -32,8 +32,8 @@ function attachSignin(element, googleUser, userr) {
             }
             //window.localStorage.setItem('auth223', auth22);
             //window.open('#welcome')
-            document.getElementById('name').innerText = "Signed in: " +
-                googleUser.getBasicProfile().getName();
+            // document.getElementById('name').innerText = "Signed in: " +
+            //     googleUser.getBasicProfile().getName();
             // document.getElementById("router-view").innerHTML = document.getElementById("template-SignIn").innerHTML, userr
             //document.getElementById("router-view").innerHTML = document.getElementById("template-welcome").innerHTML
             //alert(userr.name);
@@ -51,7 +51,6 @@ function signOut() {
         alert("Boli ste odhlásený...");
         // znovu načítame stránku a zobrazíme tlačidlo pre prihlásenie
         localStorage.clear();
-        window.localStorage.removeItem('auth223');
 
         location.reload();
     });

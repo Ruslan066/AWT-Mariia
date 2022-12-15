@@ -140,24 +140,38 @@ function total() {
 //функция берет данные из localStorage браузера
 //помещает их в переменную opinions
 function createHtml4opinions(targetElm) {
-    //var name = googleUser.getBasicProfile().getName();
     //переменная localStorage
-    const opinionsFromStorage = localStorage.myTreesComments;
-    //переменная с данными
-    let opinions = [];
+    //const opinionsFromStorage = localStorage.myTreesComments;
+    // if (opinionsFromStorage) {
+    //     //помещаем данные в переменную
+    //     opinions = JSON.parse(opinionsFromStorage);
+    //     //для каждой записи которая хранится в localStorage
+    //     opinions.forEach(opinion => {
+    //         opinion.created = (new Date(opinion.created)).toDateString();
+    //     });
+    // }
 
-    if (opinionsFromStorage) {
-        //помещаем данные в переменную
-        opinions = JSON.parse(opinionsFromStorage);
-        //для каждой записи которая хранится в localStorage
-        opinions.forEach(opinion => {
-            opinion.created = (new Date(opinion.created)).toDateString();
-        });
+    //переменная с данными
+    //userr.id = 1234567;
+    let opinions = [];
+    if(userr.id !== null){
+        //let idGoodleUser = 1234567;
+        function reqListenerComments() {
+            if (this.status === 200) {
+                opinions = JSON.parse(this.responseText)
+                console.log(responseJSON);
+                console.log(this.responseText);
+
+                //opinions.
+            }
+        }
+
+        var ajax = new XMLHttpRequest();
+        ajax.addEventListener("load", reqListenerComments);
+        ajax.open("GET", `https://api.npoint.io/036dc646bce2345a437b/${userr.id}`, false);
+        ajax.send();
     }
-    opinions.name = name;
-    //генерируем (отображаем) страничку
-    //"template-opinions" - какой скрипт будет запущен
-    //opinions - передаем переменную. В html файле будут данные браться с неё
+
     document.getElementById(targetElm).innerHTML = Mustache.render(
         document.getElementById("template-opinions").innerHTML,
         opinions
