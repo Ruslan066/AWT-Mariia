@@ -168,7 +168,8 @@ function createHtml4opinions(targetElm) {
 
         var ajax = new XMLHttpRequest();
         ajax.addEventListener("load", reqListenerComments);
-        ajax.open("GET", `https://api.npoint.io/036dc646bce2345a437b/${userr.id}`, false);
+        //ajax.open("GET", `https://api.npoint.io/036dc646bce2345a437b/${userr.id}`, false);
+        ajax.open("GET", `https://api.npoint.io/7277534d6c85d7e10b53/${userr.id}`, false);
         ajax.send();
     }
 

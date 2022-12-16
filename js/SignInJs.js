@@ -20,7 +20,7 @@ function attachSignin(element, googleUser, userr) {
     auth22.attachClickHandler(element, {},
         function (googleUser, name) {
             var profile = googleUser.getBasicProfile();
-            userr.id = profile.getId();
+            userr.id += profile.getId();
             userr.name = profile.getName();
             userr.imgUrl = profile.getImageUrl();
             userr.email = profile.getEmail();
@@ -30,18 +30,11 @@ function attachSignin(element, googleUser, userr) {
             if(userr.name !== null){
                 userr.isSingIn = "You are sign in account :)";
             }
-            //window.localStorage.setItem('auth223', auth22);
-            //window.open('#welcome')
-            // document.getElementById('name').innerText = "Signed in: " +
-            //     googleUser.getBasicProfile().getName();
-            // document.getElementById("router-view").innerHTML = document.getElementById("template-SignIn").innerHTML, userr
-            //document.getElementById("router-view").innerHTML = document.getElementById("template-welcome").innerHTML
-            //alert(userr.name);
-
+            alert( userr.id);
+            window.localStorage.setItem('userID', userr.id);
 
         }, function (error) {
 
-            // alert(JSON.stringify(error, undefined, 2));
         });
 }
 

@@ -1,3 +1,5 @@
+import routes from "./routes.js";
+
 export default function processOpnFrmData(event) {
     //1.prevent normal event (form sending) processing
     event.preventDefault();
@@ -66,8 +68,8 @@ export default function processOpnFrmData(event) {
             comment: nopOpn,
             email: nopMail,
             url: foto,
-            contactChoice1: stroka,
-            contactChoice2: stroka2,
+            okres: stroka,
+            byvanie: stroka2,
             created: new Date()
         };
 
@@ -77,12 +79,53 @@ export default function processOpnFrmData(event) {
     if (localStorage.myTreesComments) {
         opinions = JSON.parse(localStorage.myTreesComments);
     }
-
+    addMyOpinoin(new_opinion);
     opinions.push(new_opinion);
     localStorage.myTreesComments = JSON.stringify(opinions);
 
     //5. переходим на страничку
     window.location.hash = "#opinions";
 
+}
+function addMyOpinoin(new_opinion){
+    let opinions = [];
+    let idGoogleUser = window.localStorage.getItem('userID');
+
+    function reqListenerComments() {
+        if (this.status === 200) {
+            let responseJSON = JSON.parse(this.responseText)
+            opinions = JSON.parse(this.responseText)
+            //
+            console.log(opinions);
+            opinions[idGoogleUser].push(new_opinion);
+            console.log(opinions);
+            //console.log(this.responseText);
+
+            let postReqSettings = //an object wih settings of the request
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json;charset=utf-8',
+                    },
+                    body: JSON.stringify(opinions)
+                }
+            fetch(`https://api.npoint.io/7277534d6c85d7e10b53`, postReqSettings)
+                .then(response => {      //fetch promise fullfilled (operation completed successfully)
+                    if (response.ok) {    //successful execution includes an error response from the server. So we have to check the return status of the response here.
+                        return response.json(); //we return a new promise with the response data in JSON to be processed
+                    } else { //if we get server error
+                        return Promise.reject(new Error(`Server answered with ${response.status}: ${response.statusText}.`)); //we return a rejected promise to be catched later
+                    }
+                })
+                .finally(() =>
+                    alert("ok")
+                )
+        }
+    }
+
+    var ajax = new XMLHttpRequest();
+    ajax.addEventListener("load", reqListenerComments);
+    ajax.open("GET", `https://api.npoint.io/7277534d6c85d7e10b53`, false);
+    ajax.send();
 }
 //localStorage.myTreesComments
