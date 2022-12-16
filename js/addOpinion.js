@@ -74,14 +74,14 @@ export default function processOpnFrmData(event) {
         };
 
     //масив с ответами
-    let opinions = [];
+    //let opinions = [];
 
-    if (localStorage.myTreesComments) {
-        opinions = JSON.parse(localStorage.myTreesComments);
-    }
+    // if (localStorage.myTreesComments) {
+    //     opinions = JSON.parse(localStorage.myTreesComments);
+    // }
     addMyOpinoin(new_opinion);
-    opinions.push(new_opinion);
-    localStorage.myTreesComments = JSON.stringify(opinions);
+    //opinions.push(new_opinion);
+    //localStorage.myTreesComments = JSON.stringify(opinions);
 
     //5. переходим на страничку
     window.location.hash = "#opinions";

@@ -2,6 +2,9 @@ import Mustache from "./mustache.js";
 import processOpnFrmData from "./addOpinion.js";
 import articleFormsHandler from "./articleFormsHandler.js";
 
+let AdminId = "id117074500003811940767";
+
+
 export default [
     {
         //часть после '#' в URL (в файлике index.html 29 строка) название ссылки
@@ -154,6 +157,7 @@ function createHtml4opinions(targetElm) {
     //переменная с данными
     //userr.id = 1234567;
     let opinions = [];
+    let opinionsAllForAdnim = [];
     if(userr.id !== null){
         //let idGoodleUser = 1234567;
         function reqListenerComments() {
@@ -163,13 +167,30 @@ function createHtml4opinions(targetElm) {
                 console.log(this.responseText);
 
                 //opinions.
+                if(userr.id===AdminId){
+                    let keysOpinions = Object.keys(opinions);
+                    console.log(keysOpinions);
+                    for (let i = 0; i <keysOpinions.length; i++) {
+                        console.log(i + " : "+opinions[keysOpinions[i]].length);
+                        for (let j = 0; j < opinions[keysOpinions[i]].length; j++) {
+                            opinionsAllForAdnim.push(opinions[keysOpinions[i]][j]);
+                        }
+                    }
+                    opinions.name = "Opinions from Visitor: "+userr.name;
+                    opinions= opinionsAllForAdnim;
+                    opinions.admin = "Admin panel";
+                    opinions.name = "All Visitors Opinions";
+                }
             }
         }
+        let url = `https://api.npoint.io/7277534d6c85d7e10b53/`;
+        if(userr.id !== AdminId)
+            url += userr.id;
 
         var ajax = new XMLHttpRequest();
         ajax.addEventListener("load", reqListenerComments);
         //ajax.open("GET", `https://api.npoint.io/036dc646bce2345a437b/${userr.id}`, false);
-        ajax.open("GET", `https://api.npoint.io/7277534d6c85d7e10b53/${userr.id}`, false);
+        ajax.open("GET", url, false);
         ajax.send();
     }
 
@@ -501,8 +522,8 @@ function addComment(targetElm, articleId, offsetFromHash, totalCount, currPage, 
         author: document.getElementById("commentauthor").value.trim()
     };
     //for (let i = 0; i < 1502; i++) {
-        commentsData.author = author[getRndInteger(0, 7)];
-        commentsData.text = text[getRndInteger(0, 7)];
+        //commentsData.author = author[getRndInteger(0, 7)];
+        // commentsData.text = text[getRndInteger(0, 7)];
         const postReqSettings = //an object wih settings of the request
             {
                 method: 'POST',
