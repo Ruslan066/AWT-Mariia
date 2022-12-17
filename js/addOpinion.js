@@ -70,7 +70,9 @@ export default function processOpnFrmData(event) {
             url: foto,
             okres: stroka,
             byvanie: stroka2,
-            created: new Date()
+            created: new Date(),
+            a:1,
+            d:1
         };
 
     //масив с ответами

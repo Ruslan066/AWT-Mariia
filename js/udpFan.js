@@ -118,7 +118,7 @@ function jsudp() {
 
 }
 
-function add(){
+function add() {
     let opinions = [];
     console.log(opinions);
     var newKey = 'key_2';
@@ -131,8 +131,7 @@ function add(){
     console.log(opinions);
 }
 
-
-function ioread(){
+function ioread() {
     let opinions = [];
     let opinions2 = [];
     let articleData = {
@@ -143,12 +142,11 @@ function ioread(){
         okres: "Okresy Bratislavy",
         byvanie: "V byte, V dome"
     }
-    let newID={
+    let newID = {}
 
-    }
     function reqListenerComments() {
         //let idGoogleUser = 'idTEST';
-        let op2=[];
+        let op2 = [];
         //let idGoogleUser = 'id1199999999999999';
         let idGoogleUser = 'id101241995083733801348';
         if (this.status === 200) {
@@ -158,7 +156,7 @@ function ioread(){
             console.log(opinions);
             let keysName = Object.keys(opinions);
             keysName.push(idGoogleUser)
-            let newPOST =[];
+            let newPOST = [];
             newPOST.push(keysName[0]);
 
             // console.log(newPOST);
@@ -174,43 +172,43 @@ function ioread(){
             //-------
 
 
-            for (let i = 0; i <1; i++) {
-                console.log(i + " : "+opinions[keysName[i]].length);
+            for (let i = 0; i < 1; i++) {
+                console.log(i + " : " + opinions[keysName[i]].length);
                 for (let j = 0; j < opinions[keysName[i]].length; j++) {
                     op2[keysName[i]].push(opinions[keysName[i]][j]);
                 }
             }
             console.log(newPOST);
             //console.log("k: " + opinions[idGoogleUser]);
-                    // if (opinions[idGoogleUser] === undefined){
-                    //     //opinions.push(articleData);
-                    //     opinions2.push({idGoogleUser : articleData});
-                    //     opinions2.push({idGoogleUser : articleData});
-                    //     console.log(opinions2);
-                    // }
-        //     opinions[idGoogleUser].push(articleData);
-        //     console.log(opinions);
-        //     //console.log(this.responseText);
-        //
-        //     let postReqSettings = //an object wih settings of the request
-        //         {
-        //             method: 'POST',
-        //             headers: {
-        //                 'Content-Type': 'application/json;charset=utf-8',
-        //             },
-        //             body: JSON.stringify(opinions)
-        //         }
-        //     fetch(`https://api.npoint.io/7277534d6c85d7e10b53`, postReqSettings)
-        //         .then(response => {      //fetch promise fullfilled (operation completed successfully)
-        //             if (response.ok) {    //successful execution includes an error response from the server. So we have to check the return status of the response here.
-        //                 return response.json(); //we return a new promise with the response data in JSON to be processed
-        //             } else { //if we get server error
-        //                 return Promise.reject(new Error(`Server answered with ${response.status}: ${response.statusText}.`)); //we return a rejected promise to be catched later
-        //             }
-        //         })
-        //         .finally(() =>
-        //             alert("ok")
-        //         )
+            // if (opinions[idGoogleUser] === undefined){
+            //     //opinions.push(articleData);
+            //     opinions2.push({idGoogleUser : articleData});
+            //     opinions2.push({idGoogleUser : articleData});
+            //     console.log(opinions2);
+            // }
+            //     opinions[idGoogleUser].push(articleData);
+            //     console.log(opinions);
+            //     //console.log(this.responseText);
+            //
+            //     let postReqSettings = //an object wih settings of the request
+            //         {
+            //             method: 'POST',
+            //             headers: {
+            //                 'Content-Type': 'application/json;charset=utf-8',
+            //             },
+            //             body: JSON.stringify(opinions)
+            //         }
+            //     fetch(`https://api.npoint.io/7277534d6c85d7e10b53`, postReqSettings)
+            //         .then(response => {      //fetch promise fullfilled (operation completed successfully)
+            //             if (response.ok) {    //successful execution includes an error response from the server. So we have to check the return status of the response here.
+            //                 return response.json(); //we return a new promise with the response data in JSON to be processed
+            //             } else { //if we get server error
+            //                 return Promise.reject(new Error(`Server answered with ${response.status}: ${response.statusText}.`)); //we return a rejected promise to be catched later
+            //             }
+            //         })
+            //         .finally(() =>
+            //             alert("ok")
+            //         )
         }
     }
 
@@ -220,7 +218,54 @@ function ioread(){
     ajax.send();
 }
 
-function ioPOST(){
+function Deleteopi() {
+    let opinions = [];
+
+    function reqListenerComments() {
+        if (this.status === 200) {
+            opinions = JSON.parse(this.responseText)
+            console.log(opinions);
+
+            let keysName = Object.keys(opinions);
+            console.log(keysName);
+            // console.log(keysName.length);
+            // console.log(opinions[keysName[2]].length);
+
+
+            //delete
+            //delete opinions[keysName[1]][0];
+            opinions[keysName[1]].splice(0, 1);
+            console.log(opinions);
+
+            let postReqSettings = //an object wih settings of the request
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json;charset=utf-8',
+                    },
+                    body: JSON.stringify(opinions)
+                }
+            fetch(`https://api.npoint.io/7277534d6c85d7e10b53`, postReqSettings)
+                .then(response => {      //fetch promise fullfilled (operation completed successfully)
+                    if (response.ok) {    //successful execution includes an error response from the server. So we have to check the return status of the response here.
+                        return response.json(); //we return a new promise with the response data in JSON to be processed
+                    } else { //if we get server error
+                        return Promise.reject(new Error(`Server answered with ${response.status}: ${response.statusText}.`)); //we return a rejected promise to be catched later
+                    }
+                })
+                .finally(() =>
+                    alert("ok")
+                )
+        }
+    }
+
+    var ajax = new XMLHttpRequest();
+    ajax.addEventListener("load", reqListenerComments);
+    ajax.open("GET", `https://api.npoint.io/7277534d6c85d7e10b53`, false);
+    ajax.send();
+}
+
+function ioPOST() {
     let articleData = {
         name: "fghdfghfghjfghfghfghfgh",
         comment: "cool site",
@@ -230,10 +275,12 @@ function ioPOST(){
         byvanie: "V byte, V dome"
     }
     let idGoodleUser = 1234567;
+
     function reqListenerComments() {
         if (this.status === 200) {
             let responseJSON = JSON.parse(this.responseText)
-            console.log(responseJSON);console.log(this.responseText);
+            console.log(responseJSON);
+            console.log(this.responseText);
             let postReqSettings = //an object wih settings of the request
                 {
                     method: 'POST',
@@ -264,15 +311,40 @@ function ioPOST(){
 
 }
 
-function delOpi(){
-    fetch(`https://api.npoint.io/7277534d6c85d7e10b53/id117074500003811940767/0`, {method: 'DELETE'})
-        .then(() => window.location.hash = `#opinions`)
-        .catch(() => window.alert("Error delete"));
+function delOpi() {
+    function reqListenerComments() {
+        if (this.status === 200) {
+            let responseJSON = JSON.parse(this.responseText)
+            console.log(responseJSON);
+            console.log(this.responseText);
+            fetch(`https://api.npoint.io/7277534d6c85d7e10b53/id101241995083733801348`, {
+                method: 'DELETE',
+                mode: 'cors'
+            })
+                .then(response => {      //fetch promise fullfilled (operation completed successfully)
+                    if (response.ok) {    //successful execution includes an error response from the server. So we have to check the return status of the response here.
+                        return response.json(); //we return a new promise with the response data in JSON to be processed
+                    } else { //if we get server error
+                        return Promise.reject(new Error(`Server answered with ${response.status}: ${response.statusText}.`)); //we return a rejected promise to be catched later
+                    }
+                })
+                .finally(() =>
+                    alert("ok")
+                )
+                .catch(err => {
+                    console.error(err)
+                });
+        }
+    }
 
+    var ajax = new XMLHttpRequest();
+    ajax.addEventListener("load", reqListenerComments);
+    ajax.open("GET", `https://api.npoint.io/7277534d6c85d7e10b53`, false);
+    ajax.send();
 }
 
 
-function ioPOST2(){
+function ioPOST2() {
     var req = new XMLHttpRequest();
     req.open("PUT", "https://api.npoint.io/9ab18429bfd7de6a2de3/next_steps/0", true);
     req.send("sdfsdf");

@@ -98,7 +98,7 @@
                 <button onclick="jsudp()"> put </button>
                 <button onclick="ioread()"> ioread </button>
                 <button onclick="ioPOST()"> ioPOST </button>
-                <button onclick="delOpi()"> delOpi </button>
+                <button onclick="Deleteopi()"> delOpi </button>
             </div>
         </script>
 
@@ -277,6 +277,7 @@
                             <th>Email</th>
                             <th>článok čo bol najzaujímavejší</th>
                             <th>Kde by chceli bývať</th>
+                            <th>delete</th>
                         </tr>
                         </thead>
                         <!--tbody - тело таблички со всеми рядками ответов-->
@@ -316,6 +317,7 @@
                                 <th>{{email}}</th>
                                 <th>{{okres}}</th>
                                 <th>{{byvanie}}</th>
+                                <th> <a class="delB" href="#DelOpinion/{{a}}/{{d}}"> Delete </a> </th>
                             </tr>
                         </section>
                         <!--конец блока со строками ответов-->

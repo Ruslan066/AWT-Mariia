@@ -110,6 +110,11 @@ export default [
         hash: "SignIn",
         target: "router-view",
         getTemplate: SigLogIn
+    },
+    {
+        hash: "DelOpinion",
+        target: "router-view",
+        getTemplate: DelOpinion
     }
 ];
 //6 сдача
@@ -139,7 +144,7 @@ function total() {
 
     return totalArticles;
 }
-
+let opinions2 = [];
 //функция берет данные из localStorage браузера
 //помещает их в переменную opinions
 function createHtml4opinions(targetElm) {
@@ -153,10 +158,10 @@ function createHtml4opinions(targetElm) {
     //         opinion.created = (new Date(opinion.created)).toDateString();
     //     });
     // }
-
+    let opinions = [];
     //переменная с данными
     //userr.id = 1234567;
-    let opinions = [];
+
     let opinionsAllForAdnim = [];
     if(userr.id !== null){
         //let idGoodleUser = 1234567;
@@ -165,21 +170,30 @@ function createHtml4opinions(targetElm) {
                 opinions = JSON.parse(this.responseText)
                 console.log(responseJSON);
                 console.log(this.responseText);
+                opinions2 = JSON.parse(this.responseText);
+                console.log(opinions2);
 
-                //opinions.
                 if(userr.id===AdminId){
                     let keysOpinions = Object.keys(opinions);
                     console.log(keysOpinions);
                     for (let i = 0; i <keysOpinions.length; i++) {
-                        console.log(i + " : "+opinions[keysOpinions[i]].length);
+                        //console.log(i + " : "+opinions[keysOpinions[i]].length);
                         for (let j = 0; j < opinions[keysOpinions[i]].length; j++) {
+                            //console.log(opinions[keysOpinions[i]][j])
+
+
+                            //console.log(opinionsAllForAdnim[i+j]);
+                            opinions[keysOpinions[i]][j].a = keysOpinions[i];
+                            opinions[keysOpinions[i]][j].d = j;
                             opinionsAllForAdnim.push(opinions[keysOpinions[i]][j]);
+                            console.log(opinionsAllForAdnim[i+j]);
                         }
                     }
                     opinions.name = "Opinions from Visitor: "+userr.name;
                     opinions= opinionsAllForAdnim;
                     opinions.admin = "Admin panel";
                     opinions.name = "All Visitors Opinions";
+                    console.log(opinions);
                 }
             }
         }
@@ -802,30 +816,43 @@ function SigLogIn(targetElm){
         );
 }
 
-// var googleUser = {};
-// var startApp = function() {
-//     gapi.load('auth2', function(){
-//         // Retrieve the singleton for the GoogleAuth library and set up the client.
-//
-//         auth2 = gapi.auth2.init({
-//             client_id: '212489423994-u5pqse4dhbod11f16u7ntlui8i64q2hu.apps.googleusercontent.com',
-//             cookiepolicy: 'single_host_origin',
-//             plugin_name: "chat"
-//             // Request scopes in addition to 'profile' and 'email'
-//             //scope: 'additional_scope'
-//         });
-//         attachSignin(document.getElementById('customBtn'));
-//     });
-// };
-//
-// function attachSignin(element) {
-//     //console.log(element.id || null);
-//     auth2.attachClickHandler(element, {},
-//         function(googleUser) {
-//             document.getElementById('name').innerText = "Signed in: " +
-//                 googleUser.getBasicProfile().getName();
-//         }, function(error) {
-//
-//             alert(JSON.stringify(error, undefined, 2));
-//         });
-// }
+function DelOpinion(targetElm, a, d){
+    alert(a+" : "+d);
+    function reqListenerComments() {
+        if (this.status === 200) {
+
+            console.log(opinions2);
+
+            let keysName = Object.keys(opinions2);
+            console.log(" del "+keysName);
+
+            opinions2[a].splice(d, 1);
+            console.log(opinions2);
+
+            let postReqSettings = //an object wih settings of the request
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json;charset=utf-8',
+                    },
+                    body: JSON.stringify(opinions2)
+                }
+            fetch(`https://api.npoint.io/7277534d6c85d7e10b53`, postReqSettings)
+                .then(response => {      //fetch promise fullfilled (operation completed successfully)
+                    if (response.ok) {    //successful execution includes an error response from the server. So we have to check the return status of the response here.
+                        return response.json(); //we return a new promise with the response data in JSON to be processed
+                    } else { //if we get server error
+                        return Promise.reject(new Error(`Server answered with ${response.status}: ${response.statusText}.`)); //we return a rejected promise to be catched later
+                    }
+                })
+                .finally(() =>
+                    window.location.hash = "#welcome"
+                )
+        }
+    }
+
+    var ajax = new XMLHttpRequest();
+    ajax.addEventListener("load", reqListenerComments);
+    ajax.open("GET", `https://api.npoint.io/7277534d6c85d7e10b53`, false);
+    ajax.send();
+}

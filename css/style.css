@@ -607,6 +607,29 @@ width: 30%;
 }
 
 
+
+.delB{
+    text-decoration: none;
+    text-align: center;
+    border-radius: 10px;
+    padding: 9px;
+    font-size: 15px;
+    background: #d4c9bb;
+    color: #2A2A2A;
+    transition: 0.2s all ease-in-out;
+}
+.delB:hover{
+    border: none;
+    text-align: center;
+    border-radius: 10px;
+    padding: 9px;
+    font-size: 15px;
+    color: white;
+    background: #7f7460;
+
+}
+
+
 /* Здесь будут все стили для устройств с viewport больше 1400 пикселей. */
 
 @media (max-width: 1100px) {
