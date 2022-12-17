@@ -3,6 +3,7 @@ import processOpnFrmData from "./addOpinion.js";
 import articleFormsHandler from "./articleFormsHandler.js";
 
 let AdminId = "id117074500003811940767";
+let myTag = "for";
 
 
 export default [
@@ -164,8 +165,6 @@ function createHtml4opinions(targetElm) {
     //     });
     // }
     let opinions = [];
-    //переменная с данными
-    //userr.id = 1234567;
 
     let opinionsAllForAdnim = [];
     if(userr.id !== null){
@@ -464,7 +463,7 @@ function fetchAndDisplayArticles(targetElm, current, offset, jump, tagtextt2, fi
     if (data4rendering.title !== null) {
         url += `&title=${data4rendering.title}`;
     }
-    if (tagtextt2 === "for") {
+    if (tagtextt2 === myTag) {
         url = `https://wt.kpi.fei.tuke.sk/api/article?max=20&offset=${data4rendering.offsets}&tag=${tagtextt2}`;
     }
     //alert("[" + data4rendering.tagtext + "]");
@@ -609,8 +608,6 @@ let responseJSONComment = "test";
 
 function getComments(id, comOffsets) {
     const url = `${urlBase}/article/${id}/comment/?max=10&offset=${comOffsets}`;
-    //alert("dsf: "+ comOffsets);
-    //const url = "https://wt.kpi.fei.tuke.sk/api/article/17188/comment";
     function reqListenerComments() {
         // stiahnuty text
         console.log("new");
@@ -622,10 +619,6 @@ function getComments(id, comOffsets) {
         }
     }
 
-    //for (let i = 0; i < 10; i++) {
-    //responseJSONComment.comments[0].dateCreated =
-    //    responseJSONComment.comments[0].dateCreated.split('T')[0];
-    //}
     var ajax = new XMLHttpRequest();
     ajax.addEventListener("load", reqListenerComments);
     ajax.open("GET", url, false);
@@ -635,12 +628,7 @@ function getComments(id, comOffsets) {
 function fetchAndProcessArticle(targetElm, artIdFromHash, offsetFromHash, totalCountFromHash, currPage, offsets, articleId, comPage, comOffsets, forEdit) {
     const url = `${urlBase}/article/${artIdFromHash}`;
 
-
-    // $('#idBackLink').css('background', 'grey');
-
-    //alert(forEdit);
     function reqListener() {
-        // stiahnuty text
         let data = {
             responseJSON1: "q",
             responseJSON2: "q",
@@ -649,15 +637,11 @@ function fetchAndProcessArticle(targetElm, artIdFromHash, offsetFromHash, totalC
         console.log(this.responseText)
         if (this.status === 200) {
             var responseJSON = JSON.parse(this.responseText)
-            //data.textarticles = responseJSON;
-            //const responseJSON = data.textarticles
             if (forEdit) {
 
 
                 responseJSON.formTitle = "Article Edit";
                 responseJSON.submitBtTitle = "Save article";
-                //                       #article/${article.id}/${data4rendering.textarticles.meta.offset}/${data4rendering.textarticles.meta.totalCount}
-                //                       /${data4rendering.currPage}/${data4rendering.offsets}/${data4rendering.textarticles.articles.id}`
                 responseJSON.backLink = `#article/${artIdFromHash}/${offsetFromHash}/${totalCountFromHash}/${currPage}/${offsets}/${articleId}`;
 
                 document.getElementById(targetElm).innerHTML =
@@ -741,15 +725,12 @@ function fetchAndProcessArticle(targetElm, artIdFromHash, offsetFromHash, totalC
                 data.backLink = `#articles/${currPage}/${offsets}`;
 
                 data.editLink =
-                    //targetElm, artIdFromHash,    offsetFromHash,   totalCountFromHash, currPage, offsets, articleId
                     `#artEdit/${responseJSON.id}/${offsetFromHash}/${totalCountFromHash}/${currPage}/${offsets}/${responseJSON.id}/${data.current}/${data.comOffsets}`;
 
                 data.deleteLink =
                     `#artDelete/${responseJSON.id}/${currPage}/${offsets}`;
                 data.commentAdd =
                     `#commentPost/${responseJSON.id}/${offsetFromHash}/${totalCountFromHash}/${currPage}/${offsets}/${responseJSON.id}/${Tfcom}/${Tocom}`;
-                //`#commentPost/${responseJSON.id}/${currPage}/${offsets}`;
-                //`#commentPost/${data}`;
 
                 document.getElementById(targetElm).innerHTML =
                     Mustache.render(
@@ -807,14 +788,10 @@ var userr = {
 
 function SigLogIn(targetElm){
 
-    //let auth22 = window.localStorage.getItem("auth223");
-    //console.log(JSON.parse(newObject));
     startApp(googleUser, userr);
-    //userr.name = localStorage.getItem('user_name');
-    userr.isSingIn = "You are not sign in account :(";
-
+    userr.isSingIn = "You are not sign in account 🙁";
     if(userr.name !== null){
-        userr.isSingIn = "You are sign in account :)";
+        userr.isSingIn = "You are sign in account 😃";
     }
 
 
@@ -826,7 +803,6 @@ function SigLogIn(targetElm){
 }
 
 function DelOpinion(targetElm, a, d){
-    alert(a+" : "+d);
     let flag = false;
     if(AdminId === userr.id)
         flag = confirm("Delete this opinion?")

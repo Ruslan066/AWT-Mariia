@@ -30,7 +30,6 @@ function attachSignin(element, googleUser, userr) {
             if(userr.name !== null){
                 userr.isSingIn = "You are sign in account :)";
             }
-            alert( userr.id);
             window.localStorage.setItem('userID', userr.id);
 
         }, function (error) {
