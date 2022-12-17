@@ -98,6 +98,11 @@ export default [
         hash: "show",
         target: "router-view",
         getTemplate: Showf
+    },
+    {
+        hash: "showCommentForm",
+        target: "router-view",
+        getTemplate: ShowComForm
     }
     ,
     {
@@ -167,33 +172,24 @@ function createHtml4opinions(targetElm) {
         //let idGoodleUser = 1234567;
         function reqListenerComments() {
             if (this.status === 200) {
-                opinions = JSON.parse(this.responseText)
-                console.log(responseJSON);
-                console.log(this.responseText);
+                opinions = JSON.parse(this.responseText);
                 opinions2 = JSON.parse(this.responseText);
-                console.log(opinions2);
 
                 if(userr.id===AdminId){
                     let keysOpinions = Object.keys(opinions);
-                    console.log(keysOpinions);
                     for (let i = 0; i <keysOpinions.length; i++) {
-                        //console.log(i + " : "+opinions[keysOpinions[i]].length);
                         for (let j = 0; j < opinions[keysOpinions[i]].length; j++) {
-                            //console.log(opinions[keysOpinions[i]][j])
-
-
-                            //console.log(opinionsAllForAdnim[i+j]);
                             opinions[keysOpinions[i]][j].a = keysOpinions[i];
                             opinions[keysOpinions[i]][j].d = j;
                             opinionsAllForAdnim.push(opinions[keysOpinions[i]][j]);
-                            console.log(opinionsAllForAdnim[i+j]);
                         }
                     }
-                    opinions.name = "Opinions from Visitor: "+userr.name;
                     opinions= opinionsAllForAdnim;
                     opinions.admin = "Admin panel";
                     opinions.name = "All Visitors Opinions";
-                    console.log(opinions);
+                }
+                else {
+                    opinions.name = "Opinions from Visitor: "+userr.name;
                 }
             }
         }
@@ -212,6 +208,13 @@ function createHtml4opinions(targetElm) {
         document.getElementById("template-opinions").innerHTML,
         opinions
     );
+}
+
+function DelOpi(){
+    const element = document.getElementById('showDelButOpi');
+    const element2 = document.getElementsByClassName('showDelButOpi2');
+    element.style.cssText = 'display: table-cell';
+    element2.style.cssText = 'display: table-cell';
 }
 
 //функция открытия файла dataOkresy
@@ -782,6 +785,12 @@ function Showf() {
     display = true;
 }
 
+function ShowComForm() {
+    const element = document.getElementById('commentsForm');
+    element.style.cssText = 'display: inline-table';
+}
+
+
 function Hidef() {
     const element = document.getElementById('tableF');
     element.style.cssText = 'display: none';
@@ -818,41 +827,52 @@ function SigLogIn(targetElm){
 
 function DelOpinion(targetElm, a, d){
     alert(a+" : "+d);
-    function reqListenerComments() {
-        if (this.status === 200) {
+    let flag = false;
+    if(AdminId === userr.id)
+        flag = confirm("Delete this opinion?")
+    else
+        alert("You haven't permissions delete this opinions")
+    if(flag) {
+        function reqListenerComments() {
+            if (this.status === 200) {
 
-            console.log(opinions2);
+                console.log(opinions2);
 
-            let keysName = Object.keys(opinions2);
-            console.log(" del "+keysName);
+                let keysName = Object.keys(opinions2);
+                console.log(" del " + keysName);
 
-            opinions2[a].splice(d, 1);
-            console.log(opinions2);
+                opinions2[a].splice(d, 1);
+                console.log(opinions2);
 
-            let postReqSettings = //an object wih settings of the request
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json;charset=utf-8',
-                    },
-                    body: JSON.stringify(opinions2)
-                }
-            fetch(`https://api.npoint.io/7277534d6c85d7e10b53`, postReqSettings)
-                .then(response => {      //fetch promise fullfilled (operation completed successfully)
-                    if (response.ok) {    //successful execution includes an error response from the server. So we have to check the return status of the response here.
-                        return response.json(); //we return a new promise with the response data in JSON to be processed
-                    } else { //if we get server error
-                        return Promise.reject(new Error(`Server answered with ${response.status}: ${response.statusText}.`)); //we return a rejected promise to be catched later
+                let postReqSettings = //an object wih settings of the request
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json;charset=utf-8',
+                        },
+                        body: JSON.stringify(opinions2)
                     }
-                })
-                .finally(() =>
-                    window.location.hash = "#welcome"
-                )
+                fetch(`https://api.npoint.io/7277534d6c85d7e10b53`, postReqSettings)
+                    .then(response => {      //fetch promise fullfilled (operation completed successfully)
+                        if (response.ok) {    //successful execution includes an error response from the server. So we have to check the return status of the response here.
+                            return response.json(); //we return a new promise with the response data in JSON to be processed
+                        } else { //if we get server error
+                            return Promise.reject(new Error(`Server answered with ${response.status}: ${response.statusText}.`)); //we return a rejected promise to be catched later
+                        }
+                    })
+                    .finally(() =>
+                        window.location.hash = "#welcome"
+                    )
+            }
         }
-    }
+
 
     var ajax = new XMLHttpRequest();
     ajax.addEventListener("load", reqListenerComments);
     ajax.open("GET", `https://api.npoint.io/7277534d6c85d7e10b53`, false);
     ajax.send();
+    }
+    else {
+        console.log("no del");
+    }
 }

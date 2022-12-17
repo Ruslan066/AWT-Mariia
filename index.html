@@ -94,11 +94,6 @@
                     <p>Kontaktovať: <a class="llinkbio" href="https://www.instagram.com/marry.tell/">Sukhachova
                         Mariia</a>, mariia.sukhachova@student.tuke.sk</p>
                 </nav>
-                <button onclick="jsread()"> read </button>
-                <button onclick="jsudp()"> put </button>
-                <button onclick="ioread()"> ioread </button>
-                <button onclick="ioPOST()"> ioPOST </button>
-                <button onclick="Deleteopi()"> delOpi </button>
             </div>
         </script>
 
@@ -260,7 +255,7 @@
             <div class="mainContainier">
                 <!--заголовок названия странички-->
                 <h2 class="h2files">{{name}}</h2>
-                <h2 class="h2files">{{admin}}</h2>
+                   <h2 class="h2files">{{admin}}  </h2>
                 <!--div в котором нходится табличка с ответами пользователя-->
                 <div class="table-wrapper">
                     <!--табличка с ответами пользователя-->
@@ -277,7 +272,6 @@
                             <th>Email</th>
                             <th>článok čo bol najzaujímavejší</th>
                             <th>Kde by chceli bývať</th>
-                            <th>delete</th>
                         </tr>
                         </thead>
                         <!--tbody - тело таблички со всеми рядками ответов-->
@@ -302,7 +296,7 @@
                         <!--начало блока со строками ответов, количество ответов - количество строк-->
                         {{#.}}
                         <section>
-                            <tr class="linetr">
+                            <tr class="linetr" onclick="window.location.href='#DelOpinion/{{a}}/{{d}}'">
                                 <!--в css файле классы (THfotoOpinions, FfotoOpinions, fotoOpinions)
                                 настроенны так, что размер фото будет всегда 100х100px-->
                                 <th class="THfotoOpinions">
@@ -317,7 +311,6 @@
                                 <th>{{email}}</th>
                                 <th>{{okres}}</th>
                                 <th>{{byvanie}}</th>
-                                <th> <a class="delB" href="#DelOpinion/{{a}}/{{d}}"> Delete </a> </th>
                             </tr>
                         </section>
                         <!--конец блока со строками ответов-->
@@ -677,6 +670,7 @@
                         {{/comments}}
                         {{/responseJSON2}}
                     </div>
+                    <a href="#showCommentForm" class="delB addcom">Write comment</a>
 
 
                     <form id="commentsForm" class="commentsForm">

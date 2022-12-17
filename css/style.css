@@ -252,6 +252,9 @@ margin: 20px 0 29px 0;
 .linetr:hover{
     background: #F4F1EA;
 }
+.linetr{
+    cursor: pointer;
+}
 
 .fl-table thead th:nth-child(odd) {
     color: #ffffff;
@@ -404,6 +407,7 @@ margin: 20px 0 29px 0;
 .comments{
     width: 80%;
     border-radius: 10px;
+    margin-bottom: 25px;
 }
 .comment{
     color: black;
@@ -416,6 +420,12 @@ margin: 20px 0 29px 0;
     border-radius: 15px;
     margin-left: 5px;
 
+}
+.addcom{
+    margin-left: 5px;
+}
+.showDelButOpiClass{
+    display: none;
 }
 
 .addComment{
@@ -447,6 +457,7 @@ margin: 20px 0 29px 0;
 }
 
 .commentsForm{
+    display: none;
     margin-top: 25px;
     width: 90%;
 }
