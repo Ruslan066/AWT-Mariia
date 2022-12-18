@@ -184,8 +184,9 @@ function createHtml4opinions(targetElm) {
                         }
                     }
                     opinions= opinionsAllForAdnim;
-                    opinions.admin = "Admin panel";
+                    opinions.admin = "🔑 Admin panel 🔑";
                     opinions.name = "All Visitors Opinions";
+                    opinions.youCanDel = "You can delete opinion by clicking on it";
                 }
                 else {
                     opinions.name = "Opinions from Visitor: "+userr.name;
