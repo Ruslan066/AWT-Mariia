@@ -3,7 +3,7 @@ import processOpnFrmData from "./addOpinion.js";
 import articleFormsHandler from "./articleFormsHandler.js";
 
 let AdminId = "id117074500003811940767";
-let myTag = "for";
+let myTag = "maria";
 
 
 export default [
@@ -150,9 +150,11 @@ function total() {
 
     return totalArticles;
 }
+
 let opinions2 = [];
 //функция берет данные из localStorage браузера
 //помещает их в переменную opinions
+//ShowOpinions*
 function createHtml4opinions(targetElm) {
     //переменная localStorage
     //const opinionsFromStorage = localStorage.myTreesComments;
@@ -167,39 +169,38 @@ function createHtml4opinions(targetElm) {
     let opinions = [];
 
     let opinionsAllForAdnim = [];
-    if(userr.id !== null){
+    if (userr.id !== null) {
         //let idGoodleUser = 1234567;
         function reqListenerComments() {
             if (this.status === 200) {
                 opinions = JSON.parse(this.responseText);
                 opinions2 = JSON.parse(this.responseText);
 
-                if(userr.id===AdminId){
+                if (userr.id === AdminId) {
                     let keysOpinions = Object.keys(opinions);
-                    for (let i = 0; i <keysOpinions.length; i++) {
+                    for (let i = 0; i < keysOpinions.length; i++) {
                         for (let j = 0; j < opinions[keysOpinions[i]].length; j++) {
                             opinions[keysOpinions[i]][j].a = keysOpinions[i];
                             opinions[keysOpinions[i]][j].d = j;
                             opinionsAllForAdnim.push(opinions[keysOpinions[i]][j]);
                         }
                     }
-                    opinions= opinionsAllForAdnim;
+                    opinions = opinionsAllForAdnim;
                     opinions.admin = "🔑 Admin panel 🔑";
                     opinions.name = "All Visitors Opinions";
                     opinions.youCanDel = "You can delete opinion by clicking on it";
-                }
-                else {
-                    opinions.name = "Opinions from Visitor: "+userr.name;
+                } else {
+                    opinions.name = "Opinions from Visitor: " + userr.name;
                 }
             }
         }
+
         let url = `https://api.npoint.io/7277534d6c85d7e10b53/`;
-        if(userr.id !== AdminId)
+        if (userr.id !== AdminId)
             url += userr.id;
 
         var ajax = new XMLHttpRequest();
         ajax.addEventListener("load", reqListenerComments);
-        //ajax.open("GET", `https://api.npoint.io/036dc646bce2345a437b/${userr.id}`, false);
         ajax.open("GET", url, false);
         ajax.send();
     }
@@ -210,7 +211,7 @@ function createHtml4opinions(targetElm) {
     );
 }
 
-function DelOpi(){
+function DelOpi() {
     const element = document.getElementById('showDelButOpi');
     const element2 = document.getElementsByClassName('showDelButOpi2');
     element.style.cssText = 'display: table-cell';
@@ -464,6 +465,7 @@ function fetchAndDisplayArticles(targetElm, current, offset, jump, tagtextt2, fi
     if (data4rendering.title !== null) {
         url += `&title=${data4rendering.title}`;
     }
+    //TagFind*
     if (tagtextt2 === myTag) {
         url = `https://wt.kpi.fei.tuke.sk/api/article?max=20&offset=${data4rendering.offsets}&tag=${tagtextt2}`;
     }
@@ -512,6 +514,8 @@ function fetchAndDisplayArticles(targetElm, current, offset, jump, tagtextt2, fi
 //
 // 6 сдача
 //
+//ButtonDel*
+//fetch(ссылка на удаление, метод DELETE)
 function DeleteArticle(targetElm, articleId, currPage, offsets) {
     fetch(`https://wt.kpi.fei.tuke.sk/api/article/${articleId}`, {method: 'DELETE'})
         .then(() => window.location.hash = `#articles/${currPage}/${offsets}`)
@@ -522,37 +526,27 @@ function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-//function addComment(targetElm, articleId, currPage, offsets) {
+//AddComenttts*
 function addComment(targetElm, articleId, offsetFromHash, totalCount, currPage, offsets, articleId2, current, comOffsets) {
-    // let author = ["Willie Kim", "Stefan Moran", "Isha Allen", "Elliot Bloggs",
-    //     "Elijah Cuevas", "Gabrielle Hayes", "Devon Benjamin", "Zeeshan Matthews"];
-    //
-    // let text = ["I don't know what I'd do without you",
-    //     "Sending you love and virtual hugs!",
-    //     "I care for you and I'm thinking about you",
-    //     "You are a special person to me",
-    //     "I am lucky that I know you",
-    //     "You mean the world to me",
-    //     "It's a real gift that I have you in my life"];
     const commentsData = {
         text: document.getElementById("commentcontent").value.trim(),
         author: document.getElementById("commentauthor").value.trim()
     };
-    //for (let i = 0; i < 1502; i++) {
-        //commentsData.author = author[getRndInteger(0, 7)];
-        // commentsData.text = text[getRndInteger(0, 7)];
-        const postReqSettings = //an object wih settings of the request
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json;charset=utf-8',
-                },
-                body: JSON.stringify(commentsData)
-            };
-        fetch(`https://wt.kpi.fei.tuke.sk/api/article/${articleId}/comment`, postReqSettings)
-            .then(() => window.location.hash = `#article/${articleId}/${offsetFromHash}/${totalCount}/${currPage}/${offsets}/${articleId2}/${current}/${comOffsets}`);
-    //}
+    const postReqSettings = //an object wih settings of the request
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+            },
+            body: JSON.stringify(commentsData)
+        };
+    fetch(`https://wt.kpi.fei.tuke.sk/api/article/${articleId}/comment`, postReqSettings)
+        .then(() => window.location.hash = `#article/${articleId}/${offsetFromHash}/${totalCount}/${currPage}/${offsets}/${articleId2}/${current}/${comOffsets}`);
 }
+
+
+// функция заходит в статью и открывает линк артикл
+//DisplayArticle*
 function addArtDetailLink2ResponseJson(data4rendering) {
 
     data4rendering.textarticles.articles = data4rendering.textarticles.articles.map(
@@ -573,20 +567,21 @@ function editArticle(targetElm, artIdFromHash, offsetFromHash, totalCountFromHas
     fetchAndProcessArticle(...arguments, true);
 }
 
+//AddArticles*
+//заполняем переменную var data данными и передаем ее в форму articleFormsHandler.js
 function addArticle(targetElm) {
     totalCountf();
-    //делим количество статей на 20, чтобы узнать сколько страничек нам потребуется
     var totalCount = totalCountArt + 1;
     var d = new Date();
     var data = {
         id: 19290,
+        //AddMyName*
         author: userr.name,
         dateCreated: d.toISOString(),
         imageLink: "",
         title: "",
         tags: [
-            "mari",
-            "new"
+            "mari"
         ]
     };
     data.formTitle = "Article Add";
@@ -607,6 +602,7 @@ function addArticle(targetElm) {
 
 let responseJSONComment = "test";
 
+//ShowComments*
 function getComments(id, comOffsets) {
     const url = `${urlBase}/article/${id}/comment/?max=10&offset=${comOffsets}`;
     function reqListenerComments() {
@@ -619,7 +615,6 @@ function getComments(id, comOffsets) {
             alert("Error responseJSONComment");
         }
     }
-
     var ajax = new XMLHttpRequest();
     ajax.addEventListener("load", reqListenerComments);
     ajax.open("GET", url, false);
@@ -638,9 +633,9 @@ function fetchAndProcessArticle(targetElm, artIdFromHash, offsetFromHash, totalC
         console.log(this.responseText)
         if (this.status === 200) {
             var responseJSON = JSON.parse(this.responseText)
+            //ButtonEdit*
             if (forEdit) {
-
-
+                responseJSON.GoogleUserName = userr.name;
                 responseJSON.formTitle = "Article Edit";
                 responseJSON.submitBtTitle = "Save article";
                 responseJSON.backLink = `#article/${artIdFromHash}/${offsetFromHash}/${totalCountFromHash}/${currPage}/${offsets}/${articleId}`;
@@ -655,6 +650,9 @@ function fetchAndProcessArticle(targetElm, artIdFromHash, offsetFromHash, totalC
                 }
                 window.artFrmHandler.assignFormAndArticle("articleForm", "hiddenElm", artIdFromHash, offsetFromHash, totalCountFromHash, currPage, offsets, articleId);
             } else {
+                //
+                //ОТОБРАЖЕНИЕ НЕ ДЛЯ РЕДАКТИРОВАНИЯ
+                //
                 totalCountComments(artIdFromHash);
                 var totalCount = totalCountCom / 10;
                 //Math.ceil() округляем до целого числа. А + 1 даем на одну стр больше
@@ -692,6 +690,7 @@ function fetchAndProcessArticle(targetElm, artIdFromHash, offsetFromHash, totalC
                     if (comPage < totalCount) {
                         data.nextPage = parseInt(comPage) + 1;
                     }
+                    //ТУТ ПОЛУЧАЕМ КОМЕНТЫ
                     getComments(artIdFromHash, Tocom);
                     oldpageComments = totalCount;
                 } else {
@@ -717,12 +716,10 @@ function fetchAndProcessArticle(targetElm, artIdFromHash, offsetFromHash, totalC
                     getComments(artIdFromHash, data.comOffsets);
                 }
 
-
                 data.responseJSON1 = responseJSON;
                 data.responseJSON2 = responseJSONComment;
-                //data.imageLink = responseJSON.imageLink;
 
-                //alert(data.responseJSON2.meta.totalCount);
+                //ButtonBack*
                 data.backLink = `#articles/${currPage}/${offsets}`;
 
                 data.editLink =
@@ -733,6 +730,7 @@ function fetchAndProcessArticle(targetElm, artIdFromHash, offsetFromHash, totalC
                 data.commentAdd =
                     `#commentPost/${responseJSON.id}/${offsetFromHash}/${totalCountFromHash}/${currPage}/${offsets}/${responseJSON.id}/${Tfcom}/${Tocom}`;
 
+                data.GoogleUserName = userr.name;
                 document.getElementById(targetElm).innerHTML =
                     Mustache.render(
                         document.getElementById("template-article").innerHTML,
@@ -767,6 +765,7 @@ function Showf() {
     display = true;
 }
 
+//showCommentForm*
 function ShowComForm() {
     const element = document.getElementById('commentsForm');
     element.style.cssText = 'display: inline-table';
@@ -778,6 +777,7 @@ function Hidef() {
     element.style.cssText = 'display: none';
     display = false;
 }
+
 var googleUser = {};
 let auth22 = {}
 var userr = {
@@ -787,14 +787,14 @@ var userr = {
     email: null
 }
 
-function SigLogIn(targetElm){
+//GoogleSignIn*
+function SigLogIn(targetElm) {
 
     startApp(googleUser, userr);
     userr.isSingIn = "You are not sign in account 🙁";
-    if(userr.name !== null){
+    if (userr.name !== null) {
         userr.isSingIn = "You are sign in account 😃";
     }
-
 
     document.getElementById(targetElm).innerHTML =
         Mustache.render(
@@ -803,13 +803,13 @@ function SigLogIn(targetElm){
         );
 }
 
-function DelOpinion(targetElm, a, d){
+function DelOpinion(targetElm, a, d) {
     let flag = false;
-    if(AdminId === userr.id)
+    if (AdminId === userr.id)
         flag = confirm("Delete this opinion?")
     else
         alert("You haven't permissions delete this opinions")
-    if(flag) {
+    if (flag) {
         function reqListenerComments() {
             if (this.status === 200) {
 
@@ -844,12 +844,11 @@ function DelOpinion(targetElm, a, d){
         }
 
 
-    var ajax = new XMLHttpRequest();
-    ajax.addEventListener("load", reqListenerComments);
-    ajax.open("GET", `https://api.npoint.io/7277534d6c85d7e10b53`, false);
-    ajax.send();
-    }
-    else {
+        var ajax = new XMLHttpRequest();
+        ajax.addEventListener("load", reqListenerComments);
+        ajax.open("GET", `https://api.npoint.io/7277534d6c85d7e10b53`, false);
+        ajax.send();
+    } else {
         console.log("no del");
     }
 }

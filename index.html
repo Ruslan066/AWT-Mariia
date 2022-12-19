@@ -12,15 +12,14 @@
 
 
     <meta name="google-signin-client_id"
-              content="212489423994-u5pqse4dhbod11f16u7ntlui8i64q2hu.apps.googleusercontent.com"/>
+          content="212489423994-u5pqse4dhbod11f16u7ntlui8i64q2hu.apps.googleusercontent.com"/>
 
     <meta name="google-signin-scope" content="profile email">
 
     <script src="https://apis.google.com/js/api.js"></script>
+
     <script src="https://apis.google.com/js/api:client.js"></script>
-
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://apis.google.com/js/platform.js"></script>
 
@@ -43,15 +42,18 @@
                     <thead>
                     <tr style="cursor: pointer">
                         <!--onclick=window.location.href="#welcome" - нужен для клика по ячейке-->
-                        <th onclick='window.location.href="#welcome"'><img src="awt/header/welcome.png"></th>
-                        <th onclick='window.location.href="#okresy"'><img src="awt/header/okresy.png"></th>
-                        <th onclick='window.location.href="#cena"'><img src="awt/header/cena.png"></th>
-                        <th onclick='window.location.href="#zvierata"'><img src="awt/header/paws.png"></th>
-                        <th onclick='window.location.href="#opinions"'><img src="awt/header/feedback.png"></th>
-                        <th onclick='window.location.href="#addOpinion"'><img src="awt/header/list.png"></th>
-                        <th onclick='window.location.href="#addarticles"'><img src="awt/header/copy-writing.png"></th>
-                        <th onclick='window.location.href="#articles/1/0"'><img src="awt/header/application.png">
-                        <th onclick='window.location.href="#SignIn"'><img src="awt/header/google.png">
+                        <th onclick='window.location.href="#welcome"'><img src="awt/header/welcome.png" alt="welcome">
+                        </th>
+                        <th onclick='window.location.href="#okresy"'><img src="awt/header/okresy.png" alt="okresy"></th>
+                        <th onclick='window.location.href="#cena"'><img src="awt/header/cena.png" alt="cena"></th>
+                        <th onclick='window.location.href="#zvierata"'><img src="awt/header/paws.png" alt="paws"></th>
+                        <th onclick='window.location.href="#opinions"'><img src="awt/header/feedback.png" alt="feedback"></th>
+                        <th onclick='window.location.href="#addOpinion"'><img src="awt/header/list.png" alt="list"></th>
+<!--
+                        //AddArticles*-->
+                        <th onclick='window.location.href="#addarticles"'><img src="awt/header/copy-writing.png" alt="copy-writing"></th>
+                        <th onclick='window.location.href="#articles/1/0"'><img src="awt/header/application.png" alt="application">
+                        <th onclick='window.location.href="#SignIn"'><img src="awt/header/google.png" alt="google">
                         </th>
                         <!--ссылка на первую страничку со статьями.
                         articles/1/0
@@ -97,8 +99,10 @@
             </div>
         </script>
 
+<!--    GoogleSignIn*-->
         <script src="js/SignInJs.js"></script>
         <!--        <script>startApp();</script>-->
+        <
         <script id="template-SignIn" type="text/template">
 
             <!--главный div в котором нходится всё что должно отображатся именно на "Welcome page" страничке -->
@@ -108,7 +112,7 @@
                 <div class="gooogle">
                     <div id="userBlock" class="infoGoogle">
                         <img class="imgGoogle" src="{{imgUrl}}" onerror="this.src='/awt/fig/no-image-available.jpg'">
-                        <div >
+                        <div>
                             <div class="userInfo">
                                 <h2 class="h2files">Name: </h2>
                                 <h3>{{name}}</h3>
@@ -338,7 +342,8 @@
                         <!--надпись-->
                         <label for="meno">Vaše meno:</label>
                         <!--поле ввода-->
-                        <input value="{{name}}" type="text" name="meno" id="meno" class="inputo" size="20" maxlength="50"
+                        <input value="{{name}}" type="text" name="meno" id="meno" class="inputo" size="20"
+                               maxlength="50"
                                placeholder="Mariia" required/>
                     </div>
                     <!--2 div блок "Váš mail"
@@ -347,7 +352,8 @@
                         <!--надпись-->
                         <label for="email">Váš mail:</label>
                         <!--поле ввода-->
-                        <input value="{{email}}" type="text" name="email" id="email" class="inputo" size="20" maxlength="50"
+                        <input value="{{email}}" type="text" name="email" id="email" class="inputo" size="20"
+                               maxlength="50"
                                placeholder="mail@gmail.com" required/>
                     </div>
                     <!--3 div блок "Foto"
@@ -563,6 +569,9 @@
                             onclick="window.location.href='{{detailLink}}'"  style="cursor: pointer"
                             --
                             -->
+
+                   <!--по клику заходим в статью -->
+<!--                        DisplayArticle*-->
                             <tr class="linetr" onclick="window.location.href='{{detailLink}}'" style="cursor: pointer">
                                 <th class="idd">{{id}}</th>
                                 <!--в css файле классы (THfotoOpinions, FfotoOpinions, fotoOpinions)
@@ -632,12 +641,18 @@
                         </p>
                     </article>
                     {{/responseJSON1}}
+            <!--тут кнопки с улог 2 3 4 возвращение редактирование и удаление-->
+            <!--ButtonBack*-->
+            <!--ButtonEdit*-->
+            <!--ButtonDel*-->
                     <div class="footerButtonEditPage">
                         <a href="{{backLink}}" class="linkAsButton" id="idBackLink">Back</a>
                         <a href="{{editLink}}" class="linkAsButton">Edit</a>
                         <a href="{{deleteLink}}" class="linkAsButton">Delete</a>
                     </div>
+<!--
 
+                    ShowComments*-->
                     <div class="comments">
                         {{#responseJSON2}}
                         <div class="button-com-page-container">
@@ -671,6 +686,7 @@
                         {{/comments}}
                         {{/responseJSON2}}
                     </div>
+<!--                showCommentForm*-->
                     <a href="#showCommentForm" class="delB addcom">Write comment</a>
 
 
@@ -680,7 +696,8 @@
                             <div class="Part0">
                                 <div class="Part1">
                                     <label for="author">Author:</label>
-                                    <input type="text" name="commentauthor" id="commentauthor" class="commentIputo"/>
+                                    <input value="{{GoogleUserName}}" type="text" name="commentauthor"
+                                           id="commentauthor" class="commentIputo"/>
 
                                 </div>
                                 <div class="Part2">
@@ -692,6 +709,7 @@
 
                                 </textarea>
                                 </div>
+<!--                                AddComenttts*-->
                                 <a href="{{commentAdd}}" class="linkAsButton">Add</a>
                             </div>
                         </div>
@@ -721,7 +739,7 @@
 
                     <div class="artEditPart1">
                         <label for="author">Author:</label>
-                        <input type="text" name="author" id="author" value="{{author}}" size="50"
+                        <input type="text" name="author" id="author" value="{{GoogleUserName}}" size="50"
                                title="Article author, max. length 100 characters."
                                maxlength="100" placeholder="e.g. Ján Trieska" class="artEditInputo i1"/>
                     </div>
